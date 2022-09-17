@@ -1,14 +1,13 @@
 import React from 'react';
 import './App.css';
+import Form from './Form.jsx';
 
-const App = () =>{
-    return (
-      <div className='App'>
-        <h1>
-          React App with NPM
-        </h1>
-      </div>
-    )
-}
 
-export default App;
+export default function App() {
+
+  return (
+    <div className='App'>
+      <Form />
+    </div>
+  );
+};
