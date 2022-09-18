@@ -13,8 +13,6 @@ touch .gitignore README.md
 node_modules/
 ```
 
-Initalize NPM
-
 ```bash
 npm init -y
 ```
@@ -180,7 +178,7 @@ git add .
 git commit -m 'first commit'
 ```
 
-If you create a new repo on GitHub, make sure it's empty.
+If you create a new repoe on GitHub, be sure to NOT create a readme or a gitignore file.
 It just complicates things during your first push.
 Make sure to add the origin of the new repo to this repo
 
