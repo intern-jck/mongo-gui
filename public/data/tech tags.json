@@ -1,0 +1,52 @@
+[
+    "Arduino",
+    "https://www.arduino.cc/"
+],
+[
+    "Raspberry Pi",
+    "https://www.raspberrypi.org/"
+],
+[
+    "Python",
+    "https://www.python.org/"
+],
+[
+    "JavaScript",
+    "https://www.javascript.com/"
+],
+[
+    "Bootstrap",
+    "https://getbootstrap.com/"
+],
+[
+    "Processing IDE",
+    "https://processing.org/"
+],
+[
+    "Open Sound Control",
+    "https://opensoundcontrol.stanford.edu/"
+],
+[
+    "ArtNet",
+    "https://art-net.org.uk/"
+],
+[
+    "DMX",
+    "https://en.wikipedia.org/wiki/DMX512"
+],
+[
+    "Fusion 360",
+    "https://www.autodesk.com/products/fusion-360/overview"
+],
+[
+    "Teensy",
+    "https://www.pjrc.com/teensy/"
+],
+[
+    "WS2812b",
+    "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf"
+],
+[
+    "MIDI",
+    "https://en.wikipedia.org/wiki/MIDI"
+]

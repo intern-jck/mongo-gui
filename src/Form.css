@@ -1,0 +1,53 @@
+.Form {
+  border: 4px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Form h2 {
+  font-size: xx-large;
+}
+
+.Form form {
+  border: 4px solid black;
+  margin: 1em;
+  font-size: x-large;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 1em;
+}
+
+.Form input, label, textarea{
+  /* border: 4px solid red; */
+  font-size: x-large;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.Form select, option {
+  font-size: x-large;
+  display: block;
+}
+
+.form-name {
+  /* border: 4px solid green; */
+}
+
+.form-date {
+  /* border: 4px solid green; */
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+}
+
+.form-section {
+  /* border: 4px solid blue; */
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+}
+
