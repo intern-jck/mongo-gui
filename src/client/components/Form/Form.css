@@ -86,5 +86,17 @@ input, textarea {
 .form-tech-tags {
   border: 4px solid blue;
   display: flex;
+  flex-direction: column;
+}
+
+.form-tech-list {
+  border: 4px solid blue;
+  display: row;
+  flex-direction: column;
+}
+
+.form-photos {
+  border: 4px solid blue;
+  display: flex;
   flex-direction: row;
 }

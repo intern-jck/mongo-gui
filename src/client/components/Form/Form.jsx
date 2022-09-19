@@ -19,10 +19,10 @@ const dataSchema = {
 }
 
 const Form = ({project, submitHandler}) => {
-  console.log(project)
+  // console.log(project)
   const [formData, setFormData] = useState(project);
-  const [newPhoto, setNewPhoto] = useState('');
   const [newTech, setNewTech] = useState('');
+  const [newPhoto, setNewPhoto] = useState('');
 
   useEffect(() => {
     setFormData(project);
@@ -30,26 +30,45 @@ const Form = ({project, submitHandler}) => {
 
   const submitForm = (event) => {
     event.preventDefault();
-    console.log(formData);
+    // console.log(formData);
     submitHandler(formData);
   };
 
   const inputChange = (event) => {
     event.preventDefault();
     const {name, value} = event.target;
-    let updatedInput = {[name]: value};
-
-    if (name === 'tech' || name === 'photos') {
-      updatedInput = formData[name].push(value);
-    }
-
+    const updatedInput = {[name]: value};
+    console.log(name, value)
     setFormData((formData) => ({
       ...formData,
       ...updatedInput,
     }));
   };
 
-  const addPhotos = () => {
+  const addTag = (event) => {
+    event.preventDefault();
+    const {name, value} = event.target;
+    const {tech} = formData;
+    console.log(newTech);
+
+    if (newTech) {
+      console.log(newTech);
+      tech.push(newTech);
+      setFormData((formData) => ({
+        ...formData,
+        ...tech,
+      }))
+    }
+  }
+
+  const getTag = (event) => {
+    event.preventDefault();
+    const {name, value} = event.target;
+    console.log(name, value)
+    setNewTech(value);
+  };
+
+  const getPhoto = () => {
     console.log('photo')
   }
 
@@ -62,6 +81,7 @@ const Form = ({project, submitHandler}) => {
       <div className='form-content'>
         <form onSubmit={submitForm}>
           <input type='submit' id='submit-form' />
+          {/* Project Info */}
           <div className='form-section'>
             <label htmlFor='form-name'>
               Name {formData.name} Here
@@ -121,8 +141,8 @@ const Form = ({project, submitHandler}) => {
             </label>
           </div>
 
+          {/* Project Data */}
           <div className='form-section'>
-
             <div className='form-date'>
               <label htmlFor='form-start-month'>
                 Start Month
@@ -130,21 +150,18 @@ const Form = ({project, submitHandler}) => {
                   <option>MONTH</option>
                 </select>
               </label>
-
               <label htmlFor='form-start-year'>
                 Start Month
                 <select id='form-start-year'>
                   <option>YEAR</option>
                 </select>
               </label>
-
               <label htmlFor='form-end-month'>
                 End Month
                 <select id='form-end-month'>
                   <option>MONTH</option>
                 </select>
               </label>
-
               <label htmlFor='form-end-year'>
                 End Year
                 <select id='form-end-year'>
@@ -152,7 +169,6 @@ const Form = ({project, submitHandler}) => {
                 </select>
               </label>
             </div>
-
 
             <div className='form-tech-tags'>
               <div className='form-tech-input'>
@@ -163,13 +179,16 @@ const Form = ({project, submitHandler}) => {
                     type='text'
                     name='tech'
                     placeholder='tech'
-                    // value={formData.tech}
-                    onChange={inputChange}
+                    value={newTech}
+                    onChange={getTag}
                   />
                 </label>
-                <CgAddR size={40}/>
+                <div onClick={addTag}>
+                  <CgAddR size={40}/>
+                </div>
               </div>
-              <div className='form-tech-tags'>
+
+              <div className='form-tech-list'>
                 {
                   formData.tech.map((tag, i) => {
                     return (
@@ -183,20 +202,19 @@ const Form = ({project, submitHandler}) => {
             <div className='form-photos'>
               <label htmlFor='form-photos-input'>
                 Add photos
-                  <input
-                    id='form-photos-input'
-                    type='text'
-                    name='photos'
-                    placeholder='img url'
-                    onChange={inputChange}
-                  />
+                <input
+                  id='form-photos-input'
+                  type='text'
+                  name='photos'
+                  placeholder='img url'
+                  onChange={inputChange}
+                />
                 <CgAddR size={40}/>
               </label>
             </div>
-
           </div>
-
         </form>
+
       </div>
     </div>
   );
