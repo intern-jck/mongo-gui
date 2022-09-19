@@ -1,155 +1,205 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import {CgAddR} from 'react-icons/cg';
+
 import './Form.css';
 
 const dataSchema = {
-  project_name: '',
-  project_client: '',
+  name: '',
+  link: '',
+  client: '',
   client_url: '',
-  project_link: '',
-  project_date: '',
-  project_short: '',
-  project_info: '',
-  project_photos: [],
+  date: {
+    start: '',
+    end: ''
+  },
+  short: '',
+  info: '',
+  tech: [],
+  photos: [],
 }
 
-export default function Form() {
-  const [formData, setFormData] = useState(dataSchema);
-  const [projectName, setProjectName] = useState('');
+const Form = ({project, submitHandler}) => {
+  console.log(project)
+  const [formData, setFormData] = useState(project);
+  const [newPhoto, setNewPhoto] = useState('');
+  const [newTech, setNewTech] = useState('');
+
+  useEffect(() => {
+    setFormData(project);
+  }, [project]);
 
   const submitForm = (event) => {
     event.preventDefault();
     console.log(formData);
-    // Create project link
-    // Create date range
-    // Submit form data
+    submitHandler(formData);
   };
 
   const inputChange = (event) => {
+    event.preventDefault();
     const {name, value} = event.target;
-    const updatedInput = {[name]: value}
+    let updatedInput = {[name]: value};
+
+    if (name === 'tech' || name === 'photos') {
+      updatedInput = formData[name].push(value);
+    }
+
     setFormData((formData) => ({
       ...formData,
       ...updatedInput,
     }));
   };
 
-  const addPhoto = (event) => {
-    const {files} = event.target;
-    console.log('FILES', files)
-
-    const currentPhotos = formData.project_photos;
-    console.log('CUR', currentPhotos)
-
-    const photo = {
-      name: files[0].name,
-      type: files[0].type,
-      lastModified: files[0].lastModified,
-    }
-    console.log('PHOTO', photo)
-    const updatedPhotos = formData.project_photos.push(photo);
-    const photos = {project_photos: updatedPhotos}
-    console.log('PHOTOS', photos)
-
-    // setFormData((formData) => ({
-    //   ...formData,
-    //   ...photos,
-    // }));
-  };
+  const addPhotos = () => {
+    console.log('photo')
+  }
 
   return (
     <div className='Form'>
-      <h2>Project Form</h2>
+      <div className='form-header'>
+        <label id="submit-form-label" htmlFor='submit-form'>SAVE</label>
+      </div>
 
-      <form onSubmit={submitForm}>
-
-        <div className='form-section'>
-          <label className='form-input form-name'>
-            project_name
-            <input type='text' name='project_name' value={formData.project_name} onChange={inputChange}/>
-          </label>
-          <div className='form-date'>
-            <label className='form-input'>
-              start_date
-              <select name='start_date' value={formData.start_date} onChange={inputChange}>
-                <option defaultValue value="January">January</option>
-                <option value="Febuary">Febuary</option>
-                <option value="March">March</option>
-                <option value="April">April</option>
-                <option value="May">May</option>
-                <option value="June">June</option>
-                <option value="July">July</option>
-                <option value="August">August</option>
-                <option value="September">September</option>
-                <option value="October">October</option>
-                <option value="November">November</option>
-                <option value="December">December</option>
-              </select>
+      <div className='form-content'>
+        <form onSubmit={submitForm}>
+          <input type='submit' id='submit-form' />
+          <div className='form-section'>
+            <label htmlFor='form-name'>
+              Name {formData.name} Here
+              <input
+                id='form-name'
+                type='text'
+                name='name'
+                placeholder='name'
+                value={formData.name}
+                onChange={inputChange}
+              />
             </label>
-            <label className='form-input'>
-              end_date
-              <select name='end_date' value={formData.end_date} onChange={inputChange}>
-                <option defaultValue value="Present">Present</option>
-                <option value="January">January</option>
-                <option value="Febuary">Febuary</option>
-                <option value="March">March</option>
-                <option value="April">April</option>
-                <option value="May">May</option>
-                <option value="June">June</option>
-                <option value="July">July</option>
-                <option value="August">August</option>
-                <option value="September">September</option>
-                <option value="October">October</option>
-                <option value="November">November</option>
-                <option value="December">December</option>
-              </select>
+            <label htmlFor='form-client'>
+              Client
+              <input
+                id='form-client'
+                type='text'
+                name='client'
+                placeholder='client'
+                value={formData.client}
+                onChange={inputChange}
+              />
+            </label>
+            <label htmlFor='form-client_url'>
+              Client URL
+              <input
+                id='form-client_url'
+                type='text'
+                name='client_url'
+                placeholder='client_url'
+                value={formData.client_url}
+                onChange={inputChange}
+              />
+            </label>
+            <label htmlFor='form-short'>
+              Short
+              <input
+                id='form-short'
+                type='text'
+                name='short'
+                placeholder='short'
+                value={formData.short}
+                onChange={inputChange}
+              />
+            </label>
+            <label htmlFor='form-info'>
+              Info
+              <textarea
+                id='form-info'
+                name='info'
+                placeholder='info'
+                // rows='20'
+                // cols='80'
+                value={formData.info}
+                onChange={inputChange}
+                />
             </label>
           </div>
-        </div>
 
-        <div className='form-section'>
-          <label className='form-input'>
-            project_client
-            <input type='text' name='project_client' value={formData.project_client} onChange={inputChange}/>
-          </label>
-          <label className='form-input'>
-            client_url
-            <input type='text' name='client_url' value={formData.client_url} onChange={inputChange}/>
-          </label>
-        </div>
+          <div className='form-section'>
 
-        <div className='form-section'>
-          <label className='form-input'>
-            project_short
-            <input type='text' name='project_short' value={formData.project_short} onChange={inputChange}/>
-          </label>
-        </div>
+            <div className='form-date'>
+              <label htmlFor='form-start-month'>
+                Start Month
+                <select id='form-start-month'>
+                  <option>MONTH</option>
+                </select>
+              </label>
 
-        <div className='form-section'>
-          <label className='form-input'>
-            project_info
-            <textarea name='project_info' rows='10' cols='100' value={formData.project_info} onChange={inputChange}/>
-          </label>
-        </div>
+              <label htmlFor='form-start-year'>
+                Start Month
+                <select id='form-start-year'>
+                  <option>YEAR</option>
+                </select>
+              </label>
 
-        <div className="form-section">
-          {
-            formData.project_photos ?
-            // formData.project_photos.map((photo, i) => (console.log(photo))) :
-            console.log('RENDER', formData.project_photos) :
-            null
-          }
-          <input
-            type="file"
-            name="project_photos"
-            onChange={addPhoto}
-          />
-        </div>
+              <label htmlFor='form-end-month'>
+                End Month
+                <select id='form-end-month'>
+                  <option>MONTH</option>
+                </select>
+              </label>
+
+              <label htmlFor='form-end-year'>
+                End Year
+                <select id='form-end-year'>
+                  <option>YEAR</option>
+                </select>
+              </label>
+            </div>
 
 
+            <div className='form-tech-tags'>
+              <div className='form-tech-input'>
+                <label htmlFor='form-tech'>
+                  Tech
+                  <input
+                    id='form-tech'
+                    type='text'
+                    name='tech'
+                    placeholder='tech'
+                    // value={formData.tech}
+                    onChange={inputChange}
+                  />
+                </label>
+                <CgAddR size={40}/>
+              </div>
+              <div className='form-tech-tags'>
+                {
+                  formData.tech.map((tag, i) => {
+                    return (
+                      <a href='#' key={i}>{tag}</a>
+                    )
+                  })
+                }
+              </div>
+            </div>
 
+            <div className='form-photos'>
+              <label htmlFor='form-photos-input'>
+                Add photos
+                  <input
+                    id='form-photos-input'
+                    type='text'
+                    name='photos'
+                    placeholder='img url'
+                    onChange={inputChange}
+                  />
+                <CgAddR size={40}/>
+              </label>
+            </div>
 
-        <input type='submit' value="SUBMIT"/>
-      </form>
+          </div>
+
+        </form>
+      </div>
     </div>
   );
 };
+
+export default Form;

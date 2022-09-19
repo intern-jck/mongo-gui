@@ -1,15 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import NavBrand from './NavBrand.jsx';
 import NavMenu from './NavMenu.jsx';
-// import NavSocial from './NavSocial.jsx';
 
 import {GiHamburgerMenu, GoX} from 'react-icons/gi';
 
-const NavMenuCollapse = ({orientation}) => {
+const NavMenuCollapse = () => {
   const [showMenu, setShowMenu] = useState(false);
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   }
+
   return (
     <div className='NavMenuCollapse'>
       <div className='nav-collapse-header'>

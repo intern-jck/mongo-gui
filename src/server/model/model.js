@@ -3,12 +3,12 @@ const {Schema} = mongoose;
 
 const ProjectsSchema = new Schema({
   name: String,
+  link: String,
   client: String,
   client_url: String,
-  link: String,
   date: {
-    start: Date,
-    end: Date,
+    start: String,
+    end: String,
   },
   short: String,
   info: String,
