@@ -83,14 +83,12 @@ const Form = ({project, submitHandler}) => {
     }
   };
 
-
   const updatePhoto = () => {
     event.preventDefault();
     const {name, value} = event.target;
     console.log(name, value)
     setNewPhoto(value);
   };
-
 
   const addPhoto = (event) => {
     event.preventDefault();
