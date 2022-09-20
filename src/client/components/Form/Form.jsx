@@ -25,6 +25,7 @@ export default function Form() {
   };
 
   const inputChange = (event) => {
+    event.preventDefault();
     const {name, value} = event.target;
     const updatedInput = {[name]: value}
     setFormData((formData) => ({
@@ -132,12 +133,12 @@ export default function Form() {
         </div>
 
         <div className="form-section">
-          {
+          {/* {
             formData.project_photos ?
             // formData.project_photos.map((photo, i) => (console.log(photo))) :
             console.log('RENDER', formData.project_photos) :
             null
-          }
+          } */}
           <input
             type="file"
             name="project_photos"
