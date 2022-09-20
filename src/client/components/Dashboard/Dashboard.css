@@ -29,7 +29,7 @@
 }
 
 .dash-project-folder {
-  border: 2px solid blue;
+  border: 4px solid black;
   width: 10em;
   height: 10em;
   display: flex;
@@ -37,24 +37,3 @@
   align-items: center;
   justify-content: center;
 }
-
-
-/*
-.DashFolderViewer {
-  border: 4px solid black;
-  width: 50vw;
-  height: 80%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 2em;
-  overflow-y: scroll;
-}
-
-
-.DashDetails {
-  border: 4px solid red;
-  width: 50vw;
-  height: 80%;
-} */

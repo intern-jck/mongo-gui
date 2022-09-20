@@ -29,15 +29,14 @@ const Dashboard = ({projects, viewHandler}) => {
   return (
     <div className='Dashboard'>
       <div className='dash-header'>
-          PROJECTS NEW DELETE
+          Project Menu Options: NEW DELETE
       </div>
-      {/* <DashFolderViewer list={projectsList} viewHandler={viewProject}/> */}
       <div className='dash-content'>
         {
           projectsList.map((name, i) => {
             return (
               <div key={i} className='dash-project-folder' onClick={selectProject}>
-                <CgFolder size={80} data-proj-id={i}/>
+                <CgFolder className='onclick' size={80} data-proj-id={i}/>
                 {name}
               </div>
               );

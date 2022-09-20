@@ -9,3 +9,12 @@
   align-items: center;
   gap: 1em;
 }
+
+/* Use for anthing thats clickable */
+.onclick {
+  cursor: pointer;
+}
+
+.onclick:hover {
+  color: green;
+}

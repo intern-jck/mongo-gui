@@ -5,16 +5,14 @@
     "client": "client a",
     "client_url": "#",
     "date": {
-      "start": "start a",
-      "end": "end a"
+      "start-month": "",
+      "start-year": "",
+      "end-month": "",
+      "end-year": ""
     },
     "short": "blah blah blah a",
     "info": "a is this cool thing",
-    "tech": [
-      ["a-tech 1", "#"],
-      ["a-tech 2", "#"],
-      ["a-tech 3", "#"]
-    ],
+    "tech": ["tech a", "tech b", "tech c"],
     "photos": []
   }
 ]

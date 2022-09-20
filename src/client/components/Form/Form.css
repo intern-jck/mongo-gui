@@ -44,6 +44,7 @@ form {
 
 .form-section {
   border: 4px solid black;
+  padding: 1em;
   width: 40vw;
   height: 50vh;
   display: flex;
@@ -53,11 +54,12 @@ form {
 }
 
 .form-section label {
-  border: 4px solid blue;
+  border: 2px solid blue;
   display: flex;
   flex-direction: column;
   gap: 1em;
   font-size: larger;
+  width: 100%;
 }
 
 input, textarea {
@@ -67,6 +69,7 @@ input, textarea {
 
 .form-date {
   border: 4px solid blue;
+  padding: 1em;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -77,26 +80,64 @@ input, textarea {
   border: 4px solid green;
 }
 
-.form-tech-input {
-  border: 4px solid blue;
-  display: flex;
-  flex-direction: row;
-}
-
 .form-tech-tags {
   border: 4px solid blue;
   display: flex;
   flex-direction: column;
+  gap: 1em;
+}
+
+.form-tech-input {
+  border: 4px solid green;
+  /* width: 100%; */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .form-tech-list {
-  border: 4px solid blue;
-  display: row;
+  border: 4px solid green;
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+}
+
+.form-tech-list a {
+  border: 4px solid black;
+  padding: 4px;
+  text-decoration: none;
+  font-size: x-large;
+}
+
+
+.form-photos {
+  border: 4px solid orange;
+  display: flex;
   flex-direction: column;
 }
 
-.form-photos {
-  border: 4px solid blue;
+.form-photos-input {
+  border: 4px solid green;
+  /* width: 100%; */
   display: flex;
   flex-direction: row;
+  align-items: center;
+}
+
+.form-photos-list {
+  border: 4px solid green;
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+}
+
+.form-photo-thumb {
+  border: 4px solid black;
+  width: 4vw;
+  height: 4vw;
+}
+.form-photo-thumb img {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
 }

@@ -1,10 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import './App.css';
+import axios from 'axios';
 import Navbar from './components/Navbar/Navbar.jsx';
 import Dashboard from './components/Dashboard/Dashboard.jsx';
 import Form from './components/Form/Form.jsx';
-
-import axios from 'axios';
+import './App.css';
 
 const SERVER_URL = `http://127.0.0.1:8080`;
 

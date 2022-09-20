@@ -3,19 +3,14 @@ import {CgAddR} from 'react-icons/cg';
 
 import './Form.css';
 
-const MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
-const YEARS = [...Array(10)].map((item, i) => (2014 + i));
-
 const dataSchema = {
   name: '',
   link: '',
   client: '',
   client_url: '',
   date: {
-    'start-month': '',
-    'start-year': '',
-    'end-month': '',
-    'end-year': '',
+    start: '',
+    end: ''
   },
   short: '',
   info: '',
@@ -26,7 +21,6 @@ const dataSchema = {
 const Form = ({project, submitHandler}) => {
   // console.log(project)
   const [formData, setFormData] = useState(project);
-  const [newDate, setNewDate] = useState({});
   const [newTech, setNewTech] = useState('');
   const [newPhoto, setNewPhoto] = useState('');
 
@@ -51,79 +45,48 @@ const Form = ({project, submitHandler}) => {
     }));
   };
 
-  const updateDate = (event) => {
+  const addTag = (event) => {
     event.preventDefault();
     const {name, value} = event.target;
-    const newDate = formData.date;
-    newDate[name] = value;
-    setFormData((formData) => ({
-      ...formData,
-      date: newDate,
-    }));
-  };
+    const {tech} = formData;
+    console.log(newTech);
 
-  const updateTag = (event) => {
+    if (newTech) {
+      console.log(newTech);
+      tech.push(newTech);
+      setFormData((formData) => ({
+        ...formData,
+        ...tech,
+      }))
+    }
+  }
+
+  const getTag = (event) => {
     event.preventDefault();
     const {name, value} = event.target;
     console.log(name, value)
     setNewTech(value);
   };
 
-  const addTag = (event) => {
-    event.preventDefault();
-    const {name, value} = event.target;
-    const {tech} = formData;
-    if (newTech) {
-      tech.push(newTech);
-      setNewTech('');
-      setFormData((formData) => ({
-        ...formData,
-        tech: tech,
-      }))
-    }
-  };
+  const getPhoto = () => {
+    console.log('photo')
+  }
 
-
-  const updatePhoto = () => {
-    event.preventDefault();
-    const {name, value} = event.target;
-    console.log(name, value)
-    setNewPhoto(value);
-  };
-
-
-  const addPhoto = (event) => {
-    event.preventDefault();
-    const {name, value} = event.target;
-    const {photos} = formData;
-    if (newPhoto) {
-      photos.push(newPhoto);
-      setNewPhoto('');
-      setFormData((formData) => ({
-        ...formData,
-        photos: photos,
-      }))
-    }
-  };
   return (
     <div className='Form'>
-
       <div className='form-header'>
         <label id="submit-form-label" htmlFor='submit-form'>SAVE</label>
       </div>
 
       <div className='form-content'>
         <form onSubmit={submitForm}>
-
           <input type='submit' id='submit-form' />
-
           {/* Project Info */}
           <div className='form-section'>
             <label htmlFor='form-name'>
               Name
               <input
                 id='form-name'
-                className='onclick'
                 type='text'
                 name='name'
                 placeholder='name'
@@ -135,7 +98,6 @@ const Form = ({project, submitHandler}) => {
               Client
               <input
                 id='form-client'
-                className='onclick'
                 type='text'
                 name='client'
                 placeholder='client'
@@ -147,7 +109,6 @@ const Form = ({project, submitHandler}) => {
               Client URL
               <input
                 id='form-client_url'
-                className='onclick'
                 type='text'
                 name='client_url'
                 placeholder='client_url'
@@ -159,7 +120,6 @@ const Form = ({project, submitHandler}) => {
               Short
               <input
                 id='form-short'
-                className='onclick'
                 type='text'
                 name='short'
                 placeholder='short'
@@ -171,7 +131,6 @@ const Form = ({project, submitHandler}) => {
               Info
               <textarea
                 id='form-info'
-                className='onclick'
                 name='info'
                 placeholder='info'
                 // rows='20'
@@ -185,70 +144,28 @@ const Form = ({project, submitHandler}) => {
           {/* Project Data */}
           <div className='form-section'>
             <div className='form-date'>
-
               <label htmlFor='form-start-month'>
                 Start Month
-                <select
-                  id='form-start-month'
-                  name='start-month'
-                  value={formData.date['start-month']}
-                  onChange={updateDate}
-                >
-                  {
-                    MONTHS.map((month, i) => (
-                      <option key={i}>{month}</option>
-                    ))
-                  }
+                <select id='form-start-month'>
+                  <option>MONTH</option>
                 </select>
               </label>
-
               <label htmlFor='form-start-year'>
-                Start Year
-                <select
-                  id='form-start-year'
-                  name='start-year'
-                  value={formData.date['start-year']}
-                  onChange={updateDate}
-                >
-                  {
-                    YEARS.map((year, i) => (
-                      <option key={i}>{year}</option>
-                    ))
-                  }
+                Start Month
+                <select id='form-start-year'>
+                  <option>YEAR</option>
                 </select>
               </label>
-
               <label htmlFor='form-end-month'>
                 End Month
-                <select
-                  id='form-end-month'
-                  name='end-month'
-                  value={formData.date['end-month']}
-                  onChange={updateDate}
-                >
-                  <option>Present</option>
-                  {
-                    MONTHS.map((month, i) => (
-                      <option key={i}>{month}</option>
-                    ))
-                  }
+                <select id='form-end-month'>
+                  <option>MONTH</option>
                 </select>
               </label>
-
               <label htmlFor='form-end-year'>
                 End Year
-                <select
-                  id='form-end-year'
-                  name='end-year'
-                  value={formData.date['end-year']}
-                  onChange={updateDate}
-                >
-                  <option>Present</option>
-                  {
-                    YEARS.map((year, i) => (
-                      <option key={i}>{year}</option>
-                    ))
-                  }
+                <select id='form-end-year'>
+                  <option>YEAR</option>
                 </select>
               </label>
             </div>
@@ -263,7 +180,7 @@ const Form = ({project, submitHandler}) => {
                     name='tech'
                     placeholder='tech'
                     value={newTech}
-                    onChange={updateTag}
+                    onChange={getTag}
                   />
                 </label>
                 <div onClick={addTag}>
@@ -283,39 +200,21 @@ const Form = ({project, submitHandler}) => {
             </div>
 
             <div className='form-photos'>
-              <div className='form-photos-input'>
-                <label htmlFor='form-photo'>
-                  Photos
-                  <input
-                    id='form-photo'
-                    type='text'
-                    name='photos'
-                    placeholder='img url'
-                    value={newPhoto}
-                    onChange={updatePhoto}
-                  />
-                </label>
-                <div onClick={addPhoto}>
-                  <CgAddR size={40}/>
-                </div>
-              </div>
-
-              <div className='form-photos-list'>
-                {
-                  formData.photos.map((photo, i) => {
-                    return (
-                      <div key={i} className='form-photo-thumb'>
-                        <img src={photo}/>
-                      </div>
-                    )
-                  })
-                }
-              </div>
-
+              <label htmlFor='form-photos-input'>
+                Photos
+                <input
+                  id='form-photos-input'
+                  type='text'
+                  name='photos'
+                  placeholder='img url'
+                  onChange={inputChange}
+                />
+              </label>
+              <CgAddR size={40}/>
             </div>
           </div>
-
         </form>
+
       </div>
     </div>
   );
