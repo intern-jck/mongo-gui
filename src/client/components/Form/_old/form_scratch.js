@@ -1,3 +1,23 @@
+<label htmlFor='form-name'>
+Name
+<input
+  id='form-name'
+  className='onclick'
+  type='text'
+  name='name'
+  placeholder='name'
+  value={formData.name}
+  onChange={inputChange}
+/>
+</label>
+
+
+
+
+
+
+
+
 
 
   const addPhoto = (event) => {

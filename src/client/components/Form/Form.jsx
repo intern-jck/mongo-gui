@@ -1,27 +1,23 @@
 import React, {useState, useEffect} from 'react';
 import {CgAddR} from 'react-icons/cg';
 
-import './Form.css';
+import TextInput from './FormComponents/TextInput.jsx';
+import TextArea from './FormComponents/TextArea.jsx';
+import DateInput from './FormComponents/DateInput.jsx';
 
-const MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
-const YEARS = [...Array(10)].map((item, i) => (2014 + i));
+import './Form.css';
 
 const dataSchema = {
   name: '',
   link: '',
   client: '',
   client_url: '',
-  date: {
-    'start-month': '',
-    'start-year': '',
-    'end-month': '',
-    'end-year': '',
-  },
+  date: '',
   short: '',
   info: '',
   tech: [],
   photos: [],
-}
+};
 
 const Form = ({project, submitHandler}) => {
   // console.log(project)
@@ -103,6 +99,11 @@ const Form = ({project, submitHandler}) => {
       }))
     }
   };
+
+  const getDate = (date) => {
+    console.log(date);
+  };
+
   return (
     <div className='Form'>
 
@@ -112,79 +113,52 @@ const Form = ({project, submitHandler}) => {
 
       <div className='form-content'>
         <form onSubmit={submitForm}>
-
           <input type='submit' id='submit-form' />
 
           {/* Project Info */}
           <div className='form-section'>
-            <label htmlFor='form-name'>
-              Name
-              <input
-                id='form-name'
-                className='onclick'
-                type='text'
-                name='name'
-                placeholder='name'
-                value={formData.name}
-                onChange={inputChange}
-              />
-            </label>
-            <label htmlFor='form-client'>
-              Client
-              <input
-                id='form-client'
-                className='onclick'
-                type='text'
-                name='client'
-                placeholder='client'
-                value={formData.client}
-                onChange={inputChange}
-              />
-            </label>
-            <label htmlFor='form-client_url'>
-              Client URL
-              <input
-                id='form-client_url'
-                className='onclick'
-                type='text'
-                name='client_url'
-                placeholder='client_url'
-                value={formData.client_url}
-                onChange={inputChange}
-              />
-            </label>
-            <label htmlFor='form-short'>
-              Short
-              <input
-                id='form-short'
-                className='onclick'
-                type='text'
-                name='short'
-                placeholder='short'
-                value={formData.short}
-                onChange={inputChange}
-              />
-            </label>
-            <label htmlFor='form-info'>
-              Info
-              <textarea
-                id='form-info'
-                className='onclick'
-                name='info'
-                placeholder='info'
-                // rows='20'
-                // cols='80'
-                value={formData.info}
-                onChange={inputChange}
-                />
-            </label>
+            <TextInput
+              id={'form-name'}
+              name={'name'}
+              value={formData.name}
+              changeHandler={inputChange}
+            />
+            <TextInput
+              id={'form-client'}
+              name={'client'}
+              value={formData.client}
+              changeHandler={inputChange}
+            />
+            <TextInput
+              id={'form-client_url'}
+              name={'client_url'}
+              value={formData.client_url}
+              changeHandler={inputChange}
+            />
+            <TextInput
+              id={'form-short'}
+              name={'short'}
+              value={formData.short}
+              changeHandler={inputChange}
+            />
+            <TextArea
+              id={'form-info'}
+              name={'info'}
+              rows={8}
+              cols={20}
+              value={formData.info}
+              changeHandler={inputChange}
+            />
           </div>
 
           {/* Project Data */}
           <div className='form-section'>
+
             <div className='form-date'>
 
-              <label htmlFor='form-start-month'>
+              <DateInput dateHandler={getDate} />
+
+              {/* <label htmlFor='form-start-month'>
                 Start Month
                 <select
                   id='form-start-month'
@@ -248,7 +222,8 @@ const Form = ({project, submitHandler}) => {
                     ))
                   }
                 </select>
-              </label>
+              </label> */}
+
             </div>
 
             <div className='form-tech-tags'>
@@ -279,7 +254,6 @@ const Form = ({project, submitHandler}) => {
                 }
               </div>
             </div>
-
             <div className='form-photos'>
               <div className='form-photos-input'>
                 <label htmlFor='form-photo'>
@@ -312,7 +286,6 @@ const Form = ({project, submitHandler}) => {
 
             </div>
           </div>
-
         </form>
       </div>
     </div>
@@ -320,3 +293,4 @@ const Form = ({project, submitHandler}) => {
 };
 
 export default Form;
+
