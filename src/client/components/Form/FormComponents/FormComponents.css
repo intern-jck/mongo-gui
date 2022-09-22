@@ -1,0 +1,121 @@
+.TextInput {
+  border: 4px solid black;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: x-large;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+}
+
+.TextInput input {
+  font-size: x-large;
+}
+
+.TextArea {
+  border: 4px solid black;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: x-large;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+}
+
+.TextArea textarea {
+  font-size: x-large;
+}
+
+.DateInput {
+  border: 4px solid black;
+  padding: 1em;
+  font-size: large;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
+  gap: 1em;
+}
+
+.date-row {
+  width: 100%;
+  display: flex;
+  flex-direction: row ;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.date-row span {
+  width: 10em;
+}
+
+.DateInput label {
+  width: 10em;
+}
+
+.DateInput select {
+  width: 100%;
+}
+
+
+/*
+.form-tech-tags {
+  border: 4px solid blue;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.form-tech-input {
+  border: 4px solid green;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.form-tech-list {
+  border: 4px solid green;
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+}
+
+.form-tech-list a {
+  border: 4px solid black;
+  padding: 4px;
+  text-decoration: none;
+  font-size: x-large;
+}
+
+
+.form-photos {
+  border: 4px solid orange;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-photos-input {
+  border: 4px solid green;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.form-photos-list {
+  border: 4px solid green;
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+}
+
+.form-photo-thumb {
+  border: 4px solid black;
+  width: 4vw;
+  height: 4vw;
+}
+.form-photo-thumb img {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+} */

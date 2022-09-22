@@ -2,7 +2,7 @@ import React from 'react';
 
 const TextArea = ({id, name, rows, cols, value, changeHandler}) => {
   return (
-    <label htmlFor='form-info'>
+    <label htmlFor='form-info' className='TextArea'>
       {name}
       <textarea
         id={id}

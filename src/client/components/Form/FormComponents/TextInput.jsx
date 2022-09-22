@@ -2,7 +2,7 @@ import React from 'react';
 
 const TextInput = ({id, name, value, changeHandler}) => {
   return (
-    <label htmlFor={id}>
+    <label htmlFor={id} className='TextInput'>
       {name}
       <input
         id={id}
