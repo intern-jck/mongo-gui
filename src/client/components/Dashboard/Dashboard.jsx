@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import DashFolderViewer from './comps/DashFolderViewer.jsx';
 import { CgFolder } from 'react-icons/cg';
 import './Dashboard.css';
 
@@ -17,7 +16,6 @@ const Dashboard = ({projects, viewHandler}) => {
 
   const selectProject = (event) => {
     const projId = event.target.getAttribute('data-proj-id');
-
     if (projId) {
       console.log(projId)
       setSelectedProject(projects[projId]);

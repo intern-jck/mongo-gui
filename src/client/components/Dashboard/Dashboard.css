@@ -1,8 +1,7 @@
 .Dashboard {
   border: 4px solid black;
-  width: 80vw;
-  height: 40vh;
-
+  width: 100%;
+  /* height: 30vh; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,14 +19,10 @@
 .dash-content {
   border: 4px solid blue;
   width: 80%;
-  height: 40vh;
-  overflow-y: scroll;
   padding: 1em;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
   gap: 1em;
 }
 

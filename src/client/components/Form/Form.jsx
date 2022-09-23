@@ -6,6 +6,7 @@ import TextArea from './FormComponents/TextArea.jsx';
 import DateInput from './FormComponents/DateInput.jsx';
 
 import './Form.css';
+import './FormComponents/FormComponents.css';
 
 const dataSchema = {
   name: '',
@@ -44,17 +45,6 @@ const Form = ({project, submitHandler}) => {
     setFormData((formData) => ({
       ...formData,
       ...updatedInput,
-    }));
-  };
-
-  const updateDate = (event) => {
-    event.preventDefault();
-    const {name, value} = event.target;
-    const newDate = formData.date;
-    newDate[name] = value;
-    setFormData((formData) => ({
-      ...formData,
-      date: newDate,
     }));
   };
 
@@ -101,7 +91,12 @@ const Form = ({project, submitHandler}) => {
   };
 
   const getDate = (date) => {
-    console.log(date);
+    console.log('form', date);
+    // TODO format date to create a single string?
+    setFormData((formData) => ({
+      ...formData,
+      date: date,
+    }));
   };
 
   return (
@@ -111,116 +106,112 @@ const Form = ({project, submitHandler}) => {
         <label id="submit-form-label" htmlFor='submit-form'>SAVE</label>
       </div>
 
-      <div className='form-content'>
-        <form onSubmit={submitForm}>
-          <input type='submit' id='submit-form' />
+      <form onSubmit={submitForm}>
+        <input type='submit' id='submit-form' />
 
-          {/* Project Info */}
-          <div className='form-section'>
-            <TextInput
-              id={'form-name'}
-              name={'name'}
-              value={formData.name}
-              changeHandler={inputChange}
-            />
-            <TextInput
-              id={'form-client'}
-              name={'client'}
-              value={formData.client}
-              changeHandler={inputChange}
-            />
-            <TextInput
-              id={'form-client_url'}
-              name={'client_url'}
-              value={formData.client_url}
-              changeHandler={inputChange}
-            />
-            <TextInput
-              id={'form-short'}
-              name={'short'}
-              value={formData.short}
-              changeHandler={inputChange}
-            />
-            <TextArea
-              id={'form-info'}
-              name={'info'}
-              rows={8}
-              cols={20}
-              value={formData.info}
-              changeHandler={inputChange}
-            />
+        {/* Project Info */}
+        <div className='form-section'>
+          <TextInput
+            id={'form-name'}
+            name={'name'}
+            value={formData.name}
+            changeHandler={inputChange}
+          />
+          <TextInput
+            id={'form-client'}
+            name={'client'}
+            value={formData.client}
+            changeHandler={inputChange}
+          />
+          <TextInput
+            id={'form-client_url'}
+            name={'client_url'}
+            value={formData.client_url}
+            changeHandler={inputChange}
+          />
+          <TextInput
+            id={'form-short'}
+            name={'short'}
+            value={formData.short}
+            changeHandler={inputChange}
+          />
+          <TextArea
+            id={'form-info'}
+            name={'info'}
+            rows={8}
+            cols={20}
+            value={formData.info}
+            changeHandler={inputChange}
+          />
+        </div>
+
+        {/* Project Data */}
+        <div className='form-section'>
+          <DateInput dateHandler={getDate} />
+
+          {/* <div className='form-tech-tags'>
+            <div className='form-tech-input'>
+              <label htmlFor='form-tech'>
+                Tech
+                <input
+                  id='form-tech'
+                  type='text'
+                  name='tech'
+                  placeholder='tech'
+                  value={newTech}
+                  onChange={updateTag}
+                />
+              </label>
+              <div onClick={addTag}>
+                <CgAddR size={40}/>
+              </div>
+            </div>
+
+            <div className='form-tech-list'>
+              {
+                formData.tech.map((tag, i) => {
+                  return (
+                    <a href='#' key={i}>{tag}</a>
+                  )
+                })
+              }
+            </div>
           </div>
-
-          {/* Project Data */}
-          <div className='form-section'>
-
-            <div className='form-date'>
-              <DateInput dateHandler={getDate} />
-            </div>
-
-            <div className='form-tech-tags'>
-              <div className='form-tech-input'>
-                <label htmlFor='form-tech'>
-                  Tech
-                  <input
-                    id='form-tech'
-                    type='text'
-                    name='tech'
-                    placeholder='tech'
-                    value={newTech}
-                    onChange={updateTag}
-                  />
-                </label>
-                <div onClick={addTag}>
-                  <CgAddR size={40}/>
-                </div>
-              </div>
-
-              <div className='form-tech-list'>
-                {
-                  formData.tech.map((tag, i) => {
-                    return (
-                      <a href='#' key={i}>{tag}</a>
-                    )
-                  })
-                }
+          <div className='form-photos'>
+            <div className='form-photos-input'>
+              <label htmlFor='form-photo'>
+                Photos
+                <input
+                  id='form-photo'
+                  type='text'
+                  name='photos'
+                  placeholder='img url'
+                  value={newPhoto}
+                  onChange={updatePhoto}
+                />
+              </label>
+              <div onClick={addPhoto}>
+                <CgAddR size={40}/>
               </div>
             </div>
 
-            <div className='form-photos'>
-              <div className='form-photos-input'>
-                <label htmlFor='form-photo'>
-                  Photos
-                  <input
-                    id='form-photo'
-                    type='text'
-                    name='photos'
-                    placeholder='img url'
-                    value={newPhoto}
-                    onChange={updatePhoto}
-                  />
-                </label>
-                <div onClick={addPhoto}>
-                  <CgAddR size={40}/>
-                </div>
-              </div>
-
-              <div className='form-photos-list'>
-                {
-                  formData.photos.map((photo, i) => {
-                    return (
-                      <div key={i} className='form-photo-thumb'>
-                        <img src={photo}/>
-                      </div>
-                    )
-                  })
-                }
-              </div>
+            <div className='form-photos-list'>
+              {
+                formData.photos.map((photo, i) => {
+                  return (
+                    <div key={i} className='form-photo-thumb'>
+                      <img src={photo}/>
+                    </div>
+                  )
+                })
+              }
             </div>
 
-          </div>
-        </form>
-      </div>
+          </div> */}
+        </div>
+
+      </form>
+
     </div>
   );
 };

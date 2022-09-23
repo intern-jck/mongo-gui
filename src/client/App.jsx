@@ -8,24 +8,20 @@ import './App.css';
 const SERVER_URL = `http://127.0.0.1:8080`;
 
 const App = () => {
-  const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = useState();
   const [currentProject, setCurrentProject] = useState();
 
-  const getProjects = () => {
-    axios.get(`data/json/projectList.json`)
-      .then((response) => {
-        // console.log(response.data);
-        setProjects(response.data);
-      })
-      .catch((error) => (console.log('getProjects error: ', error)));
-  };
-
   useEffect(() => {
-    getProjects();
+    axios.get(`data/json/projectList.json`)
+    .then((response) => {
+      console.log(response.data)
+      setProjects(response.data);
+      setCurrentProject(response.data[0]);
+    })
+    .catch((error) => (console.log('getProjects error: ', error)));
   }, []);
 
   const viewProject = (projId) => {
-    console.log(projId)
     setCurrentProject(projects[projId]);
   };
 
