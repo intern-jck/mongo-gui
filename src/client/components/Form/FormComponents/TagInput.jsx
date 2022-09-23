@@ -6,9 +6,6 @@ const TagInput = ({id, name, value, tags, changeHandler, tagHandler}) => {
   console.log(tags)
   // const [] = useState();
 
-  const testAddTag = () => {
-    console.log();
-  }
   return (
     <div className='TagInput'>
 
