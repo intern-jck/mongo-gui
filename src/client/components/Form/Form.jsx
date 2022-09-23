@@ -9,19 +9,8 @@ import PhotoInput from './FormComponents/PhotoInput.jsx';
 import './Form.css';
 import './FormComponents/FormComponents.css';
 
-const dataSchema = {
-  name: '',
-  link: '',
-  client: '',
-  client_url: '',
-  date: '',
-  short: '',
-  info: '',
-  tech: [],
-  photos: [],
-};
-
 const Form = ({project, submitHandler}) => {
+  // console.log(project)
   const [formData, setFormData] = useState(project);
   const [newDate, setNewDate] = useState({});
   const [newTech, setNewTech] = useState('');
@@ -140,7 +129,7 @@ const Form = ({project, submitHandler}) => {
 
         {/* Project Data */}
         <div className='form-section'>
-          <DateInput dateHandler={getDate} />
+          <DateInput date={formData.date} dateHandler={getDate} />
 
           <TagInput
             id={'form-tech'}

@@ -2,30 +2,22 @@ import React, {useState, useEffect} from 'react';
 const MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
 const YEARS = [...Array(10)].map((item, i) => (2014 + i));
 
-const DateInput = ({dateHandler}) => {
-  const [date, setDate] = useState({
-    start_month: '',
-    start_year: '',
-    end_month: '',
-    end_year: '',
-  });
-
-  // const [startMonth, setStartMonth] = useState('');
-  // const [startYear, setStartYear] = useState('');
-  // const [endMonth, setEndMonth] = useState('');
-  // const [endYear, setEndYear] = useState('');
-
-  // useEffect(() => {
-  //   // dateHandler(date);
-  // }, [date]);
+const DateInput = ({date, dateHandler}) => {
+  // const [newDate, setNewDate] = useState({
+  //   start_month: '',
+  //   start_year: '',
+  //   end_month: '',
+  //   end_year: '',
+  // });
+  const [newDate, setNewDate] = useState(date);
 
   const updateDate = (event) => {
     event.preventDefault();
     const {name, value} = event.target;
-    const newDate = date;
+    const updatedDate = newDate;
     newDate[name] = value;
-    setDate(newDate);
-    dateHandler(date);
+    setNewDate(updatedDate);
+    dateHandler(updatedDate);
   };
 
   return (
@@ -39,7 +31,7 @@ const DateInput = ({dateHandler}) => {
           <select
             id='form-start-month'
             name='start_month'
-            value={date.start_month}
+            value={newDate.start_month}
             onChange={updateDate}
           >
             {
@@ -54,7 +46,7 @@ const DateInput = ({dateHandler}) => {
           <select
             id='form-start-year'
             name='start_year'
-            value={date.start_year}
+            value={newDate.start_year}
             onChange={updateDate}
           >
             {
@@ -75,7 +67,7 @@ const DateInput = ({dateHandler}) => {
           <select
             id='form-start-month'
             name='end_month'
-            value={date.end_month}
+            value={newDate.end_month}
             onChange={updateDate}
           >
             <option>Present</option>
@@ -92,7 +84,7 @@ const DateInput = ({dateHandler}) => {
           <select
             id='form-start-year'
             name='end_year'
-            value={date.end_year}
+            value={newDate.end_year}
             onChange={updateDate}
           >
             <option>Present</option>

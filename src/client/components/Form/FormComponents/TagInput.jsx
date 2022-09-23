@@ -3,12 +3,8 @@ import TextInput from './TextInput.jsx';
 import {CgAddR} from 'react-icons/cg';
 
 const TagInput = ({id, name, value, tags, changeHandler, tagHandler}) => {
-  console.log(tags)
-  // const [] = useState();
-
   return (
     <div className='TagInput'>
-
       <div className='form-tag-input'>
         <TextInput
           id={id}
@@ -20,7 +16,6 @@ const TagInput = ({id, name, value, tags, changeHandler, tagHandler}) => {
           <CgAddR size={40}/>
         </div>
       </div>
-
       <div className='form-tag-list'>
         {
           tags.map((tag, i) => {
@@ -30,7 +25,6 @@ const TagInput = ({id, name, value, tags, changeHandler, tagHandler}) => {
           })
         }
       </div>
-
     </div>
   );
 };
