@@ -150,128 +150,12 @@ const Form = ({project, submitHandler}) => {
               changeHandler={inputChange}
             />
           </div>
-<<<<<<< HEAD
-        </div>
-
-        <div className='form-section'>
-          <label className='form-input'>
-            project_client
-            <input type='text' name='project_client' value={formData.project_client} onChange={inputChange}/>
-          </label>
-          <label className='form-input'>
-            client_url
-            <input type='text' name='client_url' value={formData.client_url} onChange={inputChange}/>
-          </label>
-        </div>
-
-        <div className='form-section'>
-          <label className='form-input'>
-            project_short
-            <input type='text' name='project_short' value={formData.project_short} onChange={inputChange}/>
-          </label>
-        </div>
-
-        <div className='form-section'>
-          <label className='form-input'>
-            project_info
-            <textarea name='project_info' rows='10' cols='100' value={formData.project_info} onChange={inputChange}/>
-          </label>
-        </div>
-
-        <div className="form-section">
-          {/* {
-            formData.project_photos ?
-            // formData.project_photos.map((photo, i) => (console.log(photo))) :
-            console.log('RENDER', formData.project_photos) :
-            null
-          } */}
-          <input
-            type="file"
-            name="project_photos"
-            onChange={addPhoto}
-          />
-        </div>
-
-
-
-
-        <input type='submit' value="SUBMIT"/>
-      </form>
-=======
 
           {/* Project Data */}
           <div className='form-section'>
 
             <div className='form-date'>
-
               <DateInput dateHandler={getDate} />
-
-              {/* <label htmlFor='form-start-month'>
-                Start Month
-                <select
-                  id='form-start-month'
-                  name='start-month'
-                  value={formData.date['start-month']}
-                  onChange={updateDate}
-                >
-                  {
-                    MONTHS.map((month, i) => (
-                      <option key={i}>{month}</option>
-                    ))
-                  }
-                </select>
-              </label>
-
-              <label htmlFor='form-start-year'>
-                Start Year
-                <select
-                  id='form-start-year'
-                  name='start-year'
-                  value={formData.date['start-year']}
-                  onChange={updateDate}
-                >
-                  {
-                    YEARS.map((year, i) => (
-                      <option key={i}>{year}</option>
-                    ))
-                  }
-                </select>
-              </label>
-
-              <label htmlFor='form-end-month'>
-                End Month
-                <select
-                  id='form-end-month'
-                  name='end-month'
-                  value={formData.date['end-month']}
-                  onChange={updateDate}
-                >
-                  <option>Present</option>
-                  {
-                    MONTHS.map((month, i) => (
-                      <option key={i}>{month}</option>
-                    ))
-                  }
-                </select>
-              </label>
-
-              <label htmlFor='form-end-year'>
-                End Year
-                <select
-                  id='form-end-year'
-                  name='end-year'
-                  value={formData.date['end-year']}
-                  onChange={updateDate}
-                >
-                  <option>Present</option>
-                  {
-                    YEARS.map((year, i) => (
-                      <option key={i}>{year}</option>
-                    ))
-                  }
-                </select>
-              </label> */}
-
             </div>
 
             <div className='form-tech-tags'>
@@ -302,6 +186,7 @@ const Form = ({project, submitHandler}) => {
                 }
               </div>
             </div>
+
             <div className='form-photos'>
               <div className='form-photos-input'>
                 <label htmlFor='form-photo'>
@@ -331,12 +216,11 @@ const Form = ({project, submitHandler}) => {
                   })
                 }
               </div>
-
             </div>
+
           </div>
         </form>
       </div>
->>>>>>> fc88118da33f4cf5934384bc226b2513d13ca970
     </div>
   );
 };

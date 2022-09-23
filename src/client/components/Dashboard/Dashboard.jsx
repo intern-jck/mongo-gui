@@ -4,7 +4,6 @@ import { CgFolder } from 'react-icons/cg';
 import './Dashboard.css';
 
 const Dashboard = ({projects, viewHandler}) => {
-  // console.log(projects)
   const [projectsList, setProjectsList] = useState([]);
   const [selectedProject, setSelectedProject] = useState({});
 
@@ -36,7 +35,7 @@ const Dashboard = ({projects, viewHandler}) => {
           projectsList.map((name, i) => {
             return (
               <div key={i} className='dash-project-folder' onClick={selectProject}>
-                <CgFolder className='onclick' size={80} data-proj-id={i}/>
+                <CgFolder className='onclick' size={100} data-proj-id={i}/>
                 {name}
               </div>
               );

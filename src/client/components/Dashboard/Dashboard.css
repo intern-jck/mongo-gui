@@ -1,7 +1,8 @@
 .Dashboard {
   border: 4px solid black;
-  width: 100%;
-  height: 30vh;
+  width: 80vw;
+  height: 40vh;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,14 +11,17 @@
 
 .dash-header {
   border: 4px solid black;
-  width: 100%;
+  padding: 5px;
+  width: fit-content;
   text-align: center;
   font-size: xx-large;
 }
 
 .dash-content {
   border: 4px solid blue;
-  width: 100%;
+  width: 80%;
+  height: 40vh;
+  overflow-y: scroll;
   padding: 1em;
   display: flex;
   flex-direction: row;
@@ -25,13 +29,13 @@
   align-items: center;
   justify-content: center;
   gap: 1em;
-  overflow-y: scroll;
 }
 
 .dash-project-folder {
   border: 4px solid black;
-  width: 10em;
-  height: 10em;
+  width: 6em;
+  height: 6em;
+  font-size: xx-large;
   display: flex;
   flex-direction: column;
   align-items: center;
