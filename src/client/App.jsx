@@ -5,8 +5,6 @@ import Dashboard from './components/Dashboard/Dashboard.jsx';
 import Form from './components/Form/Form.jsx';
 import './App.css';
 
-const SERVER_URL = `http://127.0.0.1:8080`;
-
 const App = () => {
   const [projects, setProjects] = useState();
   const [currentProject, setCurrentProject] = useState();
@@ -33,14 +31,14 @@ const App = () => {
     <>
       <Navbar />
       <div className='App'>
-        {
+        {/* {
           projects ?
           <Dashboard projects={projects} viewHandler={viewProject} /> :
           null
-        }
+        } */}
         {
           currentProject ?
-          <Form project={currentProject} submitHandler={updateProject}/> :
+          <Form project={currentProject} submitHandler={updateProject} /> :
           null
         }
       </div>

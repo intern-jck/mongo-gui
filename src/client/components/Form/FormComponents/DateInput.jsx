@@ -10,10 +10,10 @@ const DateInput = ({dateHandler}) => {
     end_year: '',
   });
 
-  const [startMonth, setStartMonth] = useState('');
-  const [startYear, setStartYear] = useState('');
-  const [endMonth, setEndMonth] = useState('');
-  const [endYear, setEndYear] = useState('');
+  // const [startMonth, setStartMonth] = useState('');
+  // const [startYear, setStartYear] = useState('');
+  // const [endMonth, setEndMonth] = useState('');
+  // const [endYear, setEndYear] = useState('');
 
   // useEffect(() => {
   //   // dateHandler(date);
@@ -25,8 +25,7 @@ const DateInput = ({dateHandler}) => {
     const newDate = date;
     newDate[name] = value;
     setDate(newDate);
-    console.log('NEW DATE', newDate)
-      dateHandler(date);
+    dateHandler(date);
   };
 
   return (
@@ -50,7 +49,6 @@ const DateInput = ({dateHandler}) => {
             }
           </select>
         </label>
-
         <label htmlFor='form-start-year'>
           year
           <select
