@@ -1,9 +1,9 @@
 import React from 'react';
 
-const NavBrand = ({brandName, brandLink}) => {
+const NavBrand = ({brandName}) => {
   return (
     <div className='NavBrand'>
-      Project Maker
+      {brandName}
     </div>
   );
 };

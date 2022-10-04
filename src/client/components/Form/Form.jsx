@@ -1,24 +1,13 @@
 import React, {useState, useEffect} from 'react';
-import {CgAddR} from 'react-icons/cg';
 
 import TextInput from './FormComponents/TextInput.jsx';
 import TextArea from './FormComponents/TextArea.jsx';
 import DateInput from './FormComponents/DateInput.jsx';
+import TagInput from './FormComponents/TagInput.jsx';
+import PhotoInput from './FormComponents/PhotoInput.jsx';
 
 import './Form.css';
 import './FormComponents/FormComponents.css';
-
-const dataSchema = {
-  name: '',
-  link: '',
-  client: '',
-  client_url: '',
-  date: '',
-  short: '',
-  info: '',
-  tech: [],
-  photos: [],
-};
 
 const Form = ({project, submitHandler}) => {
   const [formData, setFormData] = useState(project);
@@ -32,7 +21,6 @@ const Form = ({project, submitHandler}) => {
 
   const submitForm = (event) => {
     event.preventDefault();
-    // console.log(formData);
     submitHandler(formData);
   };
 
@@ -40,7 +28,6 @@ const Form = ({project, submitHandler}) => {
     event.preventDefault();
     const {name, value} = event.target;
     const updatedInput = {[name]: value};
-    console.log(name, value)
     setFormData((formData) => ({
       ...formData,
       ...updatedInput,
@@ -50,7 +37,6 @@ const Form = ({project, submitHandler}) => {
   const updateTag = (event) => {
     event.preventDefault();
     const {name, value} = event.target;
-    console.log(name, value)
     setNewTech(value);
   };
 
@@ -100,9 +86,6 @@ const Form = ({project, submitHandler}) => {
 
   return (
     <div className='Form'>
-      <div className='form-header'>
-        <label id="submit-form-label" htmlFor='submit-form'>SAVE</label>
-      </div>
       <form onSubmit={submitForm}>
         <input type='submit' id='submit-form' />
         {/* Project Info */}
@@ -142,67 +125,26 @@ const Form = ({project, submitHandler}) => {
         </div>
         {/* Project Data */}
         <div className='form-section'>
-          <DateInput dateHandler={getDate} />
+          <DateInput date={formData.date} dateHandler={getDate} />
 
-          {/* <div className='form-tech-tags'>
-            <div className='form-tech-input'>
-              <label htmlFor='form-tech'>
-                Tech
-                <input
-                  id='form-tech'
-                  type='text'
-                  name='tech'
-                  placeholder='tech'
-                  value={newTech}
-                  onChange={updateTag}
-                />
-              </label>
-              <div onClick={addTag}>
-                <CgAddR size={40}/>
-              </div>
-            </div>
+          <TagInput
+            id={'form-tech'}
+            name={'tech'}
+            value={newTech}
+            tags={formData.tech}
+            changeHandler={updateTag}
+            tagHandler={addTag}
+          />
 
-            <div className='form-tech-list'>
-              {
-                formData.tech.map((tag, i) => {
-                  return (
-                    <a href='#' key={i}>{tag}</a>
-                  )
-                })
-              }
-            </div>
-          </div>
-          <div className='form-photos'>
-            <div className='form-photos-input'>
-              <label htmlFor='form-photo'>
-                Photos
-                <input
-                  id='form-photo'
-                  type='text'
-                  name='photos'
-                  placeholder='img url'
-                  value={newPhoto}
-                  onChange={updatePhoto}
-                />
-              </label>
-              <div onClick={addPhoto}>
-                <CgAddR size={40}/>
-              </div>
-            </div>
+          <PhotoInput
+            id={'form-photo'}
+            name={'photo'}
+            value={newPhoto}
+            photos={formData.photos}
+            changeHandler={updatePhoto}
+            photoHandler={addPhoto}
+          />
 
-            <div className='form-photos-list'>
-              {
-                formData.photos.map((photo, i) => {
-                  return (
-                    <div key={i} className='form-photo-thumb'>
-                      <img src={photo}/>
-                    </div>
-                  )
-                })
-              }
-            </div>
-
-          </div> */}
         </div>
       </form>
     </div>

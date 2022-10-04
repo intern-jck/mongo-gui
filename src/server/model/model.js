@@ -1,14 +1,17 @@
 const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
-const ProjectsSchema = new Schema({
+const ProjectSchema = new Schema({
+  project_id: Number,
   name: String,
   link: String,
   client: String,
   client_url: String,
   date: {
-    start: String,
-    end: String,
+    start_month: String,
+    start_year: String,
+    end_month: String,
+    end_year: String,
   },
   short: String,
   info: String,
@@ -16,5 +19,5 @@ const ProjectsSchema = new Schema({
   photos: [],
 });
 
-const Project = mongoose.model('Projects', ProjectsSchema);
+const Project = mongoose.model('Projects', ProjectSchema);
 module.exports = Project;

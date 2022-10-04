@@ -7,13 +7,26 @@ app.use(express.json());
 const PORT = 3000;
 app.use(express.static('public'));
 
-const {getProjects} = require('./controller/controller.js');
+const {getProjects, addProject} = require('./controller/controller.js');
 
-app.get('/', (req, res) => {
+app.get('/projects', (req, res) => {
   console.log('GET');
   getProjects()
-  .then((data) => (console.log(data)))
-  .catch((error) => (console.log(error)));
+  // uncomment for testing
+  // .then((data) => (res.sendStatus(200)))
+  .then((data) => {
+    console.log(data)
+    res.send(data)
+  })
+  .catch((error) => (console.log('get error', error)));
+});
+
+app.post('/project', (req, res) => {
+  console.log(req.body);
+  // res.sendStatus(201)
+  addProject(req.body)
+    .then((data) => (res.sendStatus(201)))
+    .catch((error) => (console.log('post error', error)));
 });
 
 app.listen(PORT, () => {
