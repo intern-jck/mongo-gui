@@ -87,7 +87,7 @@ const Form = ({project, submitHandler}) => {
 
   return (
     <div className='Form'>
-
+      <label id="submit-form-label" htmlFor='submit-form'>SAVE</label>
       <form onSubmit={submitForm}>
         <input type='submit' id='submit-form' />
 

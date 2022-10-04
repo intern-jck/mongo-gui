@@ -35,13 +35,13 @@ const App = () => {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <div className='App'>
-        {/* {
+        {
           projects ?
           <Dashboard projects={projects} viewHandler={viewProject} /> :
           null
-        } */}
+        }
         {
           currentProject ?
           <Form project={currentProject} submitHandler={updateProject} /> :
