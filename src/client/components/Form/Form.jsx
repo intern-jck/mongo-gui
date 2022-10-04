@@ -21,7 +21,6 @@ const dataSchema = {
 };
 
 const Form = ({project, submitHandler}) => {
-  // console.log(project)
   const [formData, setFormData] = useState(project);
   const [newDate, setNewDate] = useState({});
   const [newTech, setNewTech] = useState('');
@@ -101,14 +100,11 @@ const Form = ({project, submitHandler}) => {
 
   return (
     <div className='Form'>
-
       <div className='form-header'>
         <label id="submit-form-label" htmlFor='submit-form'>SAVE</label>
       </div>
-
       <form onSubmit={submitForm}>
         <input type='submit' id='submit-form' />
-
         {/* Project Info */}
         <div className='form-section'>
           <TextInput
@@ -144,7 +140,6 @@ const Form = ({project, submitHandler}) => {
             changeHandler={inputChange}
           />
         </div>
-
         {/* Project Data */}
         <div className='form-section'>
           <DateInput dateHandler={getDate} />
@@ -209,12 +204,9 @@ const Form = ({project, submitHandler}) => {
 
           </div> */}
         </div>
-
       </form>
-
     </div>
   );
 };
 
 export default Form;
-
