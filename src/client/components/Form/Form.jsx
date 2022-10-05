@@ -10,13 +10,36 @@ import './Form.css';
 import './FormComponents/FormComponents.css';
 
 const Form = ({project, submitHandler}) => {
-  const [formData, setFormData] = useState(project);
+  const [formData, setFormData] = useState({
+    _id: '',
+    name: '',
+    link: '',
+    client: '',
+    client_url: '',
+    date: {
+      start_month: '',
+      start_year: '',
+      end_month: '',
+      end_year: '',
+    },
+    short: '',
+    info: '',
+    tech: [],
+    photos: [],
+  });
   const [newDate, setNewDate] = useState({});
   const [newTech, setNewTech] = useState('');
   const [newPhoto, setNewPhoto] = useState('');
 
   useEffect(() => {
-    setFormData(project);
+    console.log(project)
+    // for() {
+
+    // }
+    setFormData((formData) => ({
+      ...formData,
+      ...project,
+    }));
   }, [project]);
 
   const submitForm = (event) => {
@@ -88,7 +111,6 @@ const Form = ({project, submitHandler}) => {
     <div className='Form'>
 
       <label id="submit-form-label" htmlFor='submit-form'>SAVE</label>
-
       <form onSubmit={submitForm}>
         <input type='submit' id='submit-form' />
         {/* Project Info */}
@@ -96,7 +118,7 @@ const Form = ({project, submitHandler}) => {
           <TextInput
             id={'form-name'}
             name={'name'}
-            value={formData.name}
+            value={formData.name ? formData.name : ''}
             changeHandler={inputChange}
           />
           <TextInput
@@ -129,7 +151,6 @@ const Form = ({project, submitHandler}) => {
         {/* Project Data */}
         <div className='form-section'>
           <DateInput date={formData.date} dateHandler={getDate} />
-
           <TagInput
             id={'form-tech'}
             name={'tech'}
@@ -138,7 +159,6 @@ const Form = ({project, submitHandler}) => {
             changeHandler={updateTag}
             tagHandler={addTag}
           />
-
           <PhotoInput
             id={'form-photo'}
             name={'photo'}
@@ -147,7 +167,6 @@ const Form = ({project, submitHandler}) => {
             changeHandler={updatePhoto}
             photoHandler={addPhoto}
           />
-
         </div>
       </form>
     </div>
