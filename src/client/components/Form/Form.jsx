@@ -10,7 +10,6 @@ import './Form.css';
 import './FormComponents/FormComponents.css';
 
 const Form = ({project, submitHandler}) => {
-  // console.log(project)
   const [formData, setFormData] = useState(project);
   const [newDate, setNewDate] = useState({});
   const [newTech, setNewTech] = useState('');
@@ -87,10 +86,12 @@ const Form = ({project, submitHandler}) => {
 
   return (
     <div className='Form'>
+<<<<<<< HEAD
       <label id="submit-form-label" htmlFor='submit-form'>SAVE</label>
+=======
+>>>>>>> 83fbd0bf517968cd39f6e48d4c3b78fa37064b62
       <form onSubmit={submitForm}>
         <input type='submit' id='submit-form' />
-
         {/* Project Info */}
         <div className='form-section'>
           <TextInput
@@ -126,7 +127,6 @@ const Form = ({project, submitHandler}) => {
             changeHandler={inputChange}
           />
         </div>
-
         {/* Project Data */}
         <div className='form-section'>
           <DateInput date={formData.date} dateHandler={getDate} />
@@ -150,12 +150,9 @@ const Form = ({project, submitHandler}) => {
           />
 
         </div>
-
       </form>
-
     </div>
   );
 };
 
 export default Form;
-
