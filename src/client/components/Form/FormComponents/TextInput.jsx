@@ -6,7 +6,7 @@ const TextInput = ({id, name, value, changeHandler}) => {
       {name}
       <input
         id={id}
-        className='onclick'
+        // className='onclick'
         type='text'
         name={name}
         value={value}

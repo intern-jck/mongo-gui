@@ -6,7 +6,7 @@ const TextArea = ({id, name, rows, cols, value, changeHandler}) => {
       {name}
       <textarea
         id={id}
-        className='onclick'
+        // className='onclick'
         name={name}
         rows={rows}
         cols={cols}

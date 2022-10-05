@@ -12,7 +12,7 @@ const TagInput = ({id, name, value, tags, changeHandler, tagHandler}) => {
           value={value}
           changeHandler={changeHandler}
         />
-        <div className='add-tag-btn' onClick={tagHandler}>
+        <div className='add-tag-btn onclick' onClick={tagHandler}>
           <CgAddR size={40}/>
         </div>
       </div>
@@ -20,7 +20,7 @@ const TagInput = ({id, name, value, tags, changeHandler, tagHandler}) => {
         {
           tags.map((tag, i) => {
             return (
-              <a href='#' key={i}>{tag}</a>
+              <a href='' key={i}>{tag}</a>
             )
           })
         }

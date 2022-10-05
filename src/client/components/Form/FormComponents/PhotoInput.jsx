@@ -13,7 +13,7 @@ const PhotoInput = ({id, name, value, photos, changeHandler, photoHandler}) => {
           value={value}
           changeHandler={changeHandler}
         />
-        <div className='add-photo-btn' onClick={photoHandler}>
+        <div className='add-photo-btn onclick' onClick={photoHandler}>
           <CgAddR size={40}/>
         </div>
       </div>

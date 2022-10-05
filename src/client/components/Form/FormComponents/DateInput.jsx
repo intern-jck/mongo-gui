@@ -34,9 +34,10 @@ const DateInput = ({date, dateHandler}) => {
             value={newDate.start_month}
             onChange={updateDate}
           >
+            <option key='0' value='default'></option>
             {
               MONTHS.map((month, i) => (
-                <option key={i} value={month}>{month}</option>
+                <option key={i+1} value={month}>{month}</option>
               ))
             }
           </select>
@@ -49,6 +50,7 @@ const DateInput = ({date, dateHandler}) => {
             value={newDate.start_year}
             onChange={updateDate}
           >
+            <option key='0' value='default'></option>
             {
               YEARS.map((year, i) => (
                 <option key={i}>{year}</option>
@@ -70,6 +72,7 @@ const DateInput = ({date, dateHandler}) => {
             value={newDate.end_month}
             onChange={updateDate}
           >
+            <option key='0' value='default'></option>
             <option>Present</option>
             {
               MONTHS.map((month, i) => (
@@ -87,6 +90,7 @@ const DateInput = ({date, dateHandler}) => {
             value={newDate.end_year}
             onChange={updateDate}
           >
+            <option key='0' value='default'></option>
             <option>Present</option>
             {
               YEARS.map((year, i) => (
