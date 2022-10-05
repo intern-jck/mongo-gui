@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import { CgFolder } from 'react-icons/cg';
-import { RiArrowDropDownLine } from "react-icons/ri";
+import {CgFolder} from 'react-icons/cg';
+import {RiArrowDropDownLine} from 'react-icons/ri';
 import './Dashboard.css';
 
 const Dashboard = ({projects, viewHandler}) => {
@@ -33,7 +33,9 @@ const Dashboard = ({projects, viewHandler}) => {
     <div className='Dashboard'>
 
       <div className='dash-header'>
-        Project Menu Options: NEW DELETE
+        <button>
+          NEW
+        </button>
         <button className='dash-show-btn' onClick={toggleProjects}>
           <RiArrowDropDownLine
             size={60}

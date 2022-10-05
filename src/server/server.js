@@ -4,8 +4,9 @@ const app = express();
 const cors = require('cors');
 app.use(cors());
 app.use(express.json());
-const PORT = 3000;
 app.use(express.static('public'));
+
+const PORT = 3000;
 
 const {getProjects, addProject} = require('./controller/controller.js');
 
@@ -15,7 +16,7 @@ app.get('/projects', (req, res) => {
   // uncomment for testing
   // .then((data) => (res.sendStatus(200)))
   .then((data) => {
-    console.log(data)
+    console.log('SERVER GOT: ', data)
     res.send(data)
   })
   .catch((error) => (console.log('get error', error)));

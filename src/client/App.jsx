@@ -16,7 +16,7 @@ const App = () => {
     // axios.get(`data/json/projectList.json`)
     axios.get(`${SERVER_URL}/projects`)
       .then((response) => {
-        console.log(response.data)
+        console.log('CLIENT GOT: ', response.data)
         setProjects(response.data);
         setCurrentProject(response.data[0]);
       })
@@ -29,7 +29,13 @@ const App = () => {
 
   const updateProject = (data) => {
     axios.post(`${SERVER_URL}/project`, data)
-      .then((response) => (console.log('post', response.data)))
+      .then((response) => (console.log('update project', response.data)))
+      .catch((error) => (console.log(error)));
+  };
+
+  const createProject = (data) => {
+    axios.post(`${SERVER_URL}/create`, data)
+      .then((response) => (console.log('create project', response.data)))
       .catch((error) => (console.log(error)));
   };
 
