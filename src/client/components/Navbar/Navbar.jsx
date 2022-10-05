@@ -1,12 +1,37 @@
 import React, {useState, useEffect} from 'react';
 import './Navbar.css';
+import {RiArrowDropDownLine} from 'react-icons/ri';
 
 const Navbar = () => {
   return (
-    <div className='Navbar'>
-      PROJECT MAKER
-      <label id="submit-form-label" htmlFor='submit-form'>SAVE</label>
-    </div>
+    <nav className='Navbar'>
+      {/* PROJECT MAKER */}
+
+      {/* Create */}
+      <button>
+        NEW
+      </button>
+      {/* Read/Update */}
+      <button>
+        EDIT
+      </button>
+      {/* Delete */}
+      <button>
+        DELETE
+      </button>
+
+      <button
+        className='dash-show-btn'
+        // onClick={toggleProjects}
+      >
+        SHOW
+        <RiArrowDropDownLine
+          size={60}
+          // style={showProjects ?
+          // {transform: 'rotate(0deg)'} : {transform: 'rotate(90deg)'}}
+        />
+      </button>
+    </nav>
   );
 };
 

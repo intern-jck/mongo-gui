@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import {CgFolder} from 'react-icons/cg';
-import {RiArrowDropDownLine} from 'react-icons/ri';
+// import {RiArrowDropDownLine} from 'react-icons/ri';
 import './Dashboard.css';
 
 const Dashboard = ({projects, viewHandler}) => {
-  const [showProjects, setShowProjects] = useState(false);
+  const [showProjects, setShowProjects] = useState(true);
   const [projectsList, setProjectsList] = useState([]);
   const [selectedProject, setSelectedProject] = useState({});
 
@@ -31,35 +31,32 @@ const Dashboard = ({projects, viewHandler}) => {
 
   return (
     <div className='Dashboard'>
+      {
+        projectsList.map((name, i) => {
+          return (
+            <div key={i} className='dash-project-folder' onClick={selectProject}>
+              <CgFolder className='onclick' size={100} data-proj-id={i}/>
+              {name}
+            </div>
+          );
+        })
+      }
 
-      <div className='dash-header'>
-        <button>
-          NEW
-        </button>
+      {/* <div className='dash-header'>
         <button className='dash-show-btn' onClick={toggleProjects}>
           <RiArrowDropDownLine
             size={60}
             style={showProjects ?
             {transform: 'rotate(0deg)'} : {transform: 'rotate(90deg)'}} />
         </button>
-      </div>
+      </div> */}
 
-      {
+      {/* {
         showProjects ?
         <div className='dash-content'>
-          {
-            projectsList.map((name, i) => {
-              return (
-                <div key={i} className='dash-project-folder' onClick={selectProject}>
-                  <CgFolder className='onclick' size={100} data-proj-id={i}/>
-                  {name}
-                </div>
-              );
-            })
-          }
         </div> :
         null
-      }
+      } */}
 
     </div>
   );

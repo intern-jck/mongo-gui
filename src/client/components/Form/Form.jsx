@@ -86,10 +86,9 @@ const Form = ({project, submitHandler}) => {
 
   return (
     <div className='Form'>
-<<<<<<< HEAD
+
       <label id="submit-form-label" htmlFor='submit-form'>SAVE</label>
-=======
->>>>>>> 83fbd0bf517968cd39f6e48d4c3b78fa37064b62
+
       <form onSubmit={submitForm}>
         <input type='submit' id='submit-form' />
         {/* Project Info */}

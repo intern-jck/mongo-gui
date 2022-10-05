@@ -3,7 +3,7 @@ import axios from 'axios';
 import Navbar from './components/Navbar/Navbar.jsx';
 import Dashboard from './components/Dashboard/Dashboard.jsx';
 import Form from './components/Form/Form.jsx';
-import './App.css';
+// import './App.css';
 
 const SERVER_URL = 'http://127.0.0.1:3000';
 
@@ -41,19 +41,19 @@ const App = () => {
 
   return (
     <>
-      {/* <Navbar /> */}
-      <div className='App'>
-        {
-          projects ?
-          <Dashboard projects={projects} viewHandler={viewProject} /> :
-          null
-        }
-        {
-          currentProject ?
-          <Form project={currentProject} submitHandler={updateProject} /> :
-          null
-        }
-      </div>
+      <Navbar />
+      {
+        projects ?
+        <Dashboard projects={projects} viewHandler={viewProject} /> :
+        null
+      }
+      {
+        currentProject ?
+        <Form project={currentProject} submitHandler={updateProject} /> :
+        null
+      }
+      {/* <div className='App'>
+      </div> */}
     </>
   );
 };
