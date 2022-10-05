@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Project = require('../model/model.js');
 
-mongoose.connect('mongodb://localhost:27017/projects')
+mongoose.connect('mongodb://localhost:27017/projectMaker')
   .then((data) => (console.log('mongo success!')))
   .catch((error) => (console.log(error)));
 
@@ -11,7 +11,7 @@ const getProjects = () => {
   .exec();
 };
 
-const addProject = (projectData) => {
+const updateProject = (projectData) => {
   console.log('adding project', projectData);
 
   const filter = { 'project_id': projectData.project_id };
@@ -33,7 +33,12 @@ const addProject = (projectData) => {
   return Project.findOneAndUpdate(filter, update, options).exec();
 }
 
+const createProject = (projectData) => {
+  return Project.create(projectData);
+};
+
 module.exports = {
   getProjects,
-  addProject,
+  updateProject,
+  createProject,
 };

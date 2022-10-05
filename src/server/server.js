@@ -8,7 +8,7 @@ app.use(express.static('public'));
 
 const PORT = 3000;
 
-const {getProjects, addProject} = require('./controller/controller.js');
+const {getProjects, updateProject, createProject} = require('./controller/controller.js');
 
 app.get('/projects', (req, res) => {
   console.log('GET');
@@ -25,7 +25,14 @@ app.get('/projects', (req, res) => {
 app.post('/project', (req, res) => {
   console.log(req.body);
   // res.sendStatus(201)
-  addProject(req.body)
+  updateProject(req.body)
+    .then((data) => (res.sendStatus(201)))
+    .catch((error) => (console.log('post error', error)));
+});
+
+app.post('/create', (req, res) => {
+  console.log('New Project: ', req.body);
+  createProject(req.body)
     .then((data) => (res.sendStatus(201)))
     .catch((error) => (console.log('post error', error)));
 });

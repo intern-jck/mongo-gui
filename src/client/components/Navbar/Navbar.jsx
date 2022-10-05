@@ -2,13 +2,14 @@ import React, {useState, useEffect} from 'react';
 import './Navbar.css';
 import {RiArrowDropDownLine} from 'react-icons/ri';
 
-const Navbar = () => {
+const Navbar = ({createHandler}) => {
+
   return (
     <nav className='Navbar'>
       {/* PROJECT MAKER */}
 
       {/* Create */}
-      <button>
+      <button onClick={createHandler}>
         NEW
       </button>
       {/* Read/Update */}

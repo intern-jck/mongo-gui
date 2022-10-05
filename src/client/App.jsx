@@ -14,17 +14,32 @@ const App = () => {
   useEffect(() => {
     // uncomment for testing
     // axios.get(`data/json/projectList.json`)
+    // axios.get(`${SERVER_URL}/projects`)
+    //   .then((response) => {
+    //     console.log('CLIENT GOT: ', response.data)
+    //     setProjects(response.data);
+    //     // setCurrentProject(response.data[0]);
+    //   })
+    //   .catch((error) => (console.log('getProjects error: ', error)));
+    getProjects();
+
+  }, []);
+
+  const getProjects = ()  => {
     axios.get(`${SERVER_URL}/projects`)
       .then((response) => {
         console.log('CLIENT GOT: ', response.data)
         setProjects(response.data);
-        setCurrentProject(response.data[0]);
+        // setCurrentProject(response.data[0]);
       })
       .catch((error) => (console.log('getProjects error: ', error)));
-  }, []);
+
+  };
 
   const viewProject = (projId) => {
-    setCurrentProject(projects[projId]);
+    projId ?
+      setCurrentProject(projects[projId]) :
+      setCurrentProject({});
   };
 
   const updateProject = (data) => {
@@ -33,15 +48,20 @@ const App = () => {
       .catch((error) => (console.log(error)));
   };
 
-  const createProject = (data) => {
+  const createProject = () => {
+    const data = {'name': `project-${projects.length}`};
+    console.log('Creating new project!', data, projects.length, projects);
     axios.post(`${SERVER_URL}/create`, data)
-      .then((response) => (console.log('create project', response.data)))
-      .catch((error) => (console.log(error)));
+      .then((response) => {
+        console.log('create project', response.data);
+        getProjects();
+      })
+      .catch((error) => ('Create Error', console.log(error)));
   };
 
   return (
     <>
-      <Navbar />
+      <Navbar createHandler={createProject} />
       {
         projects ?
         <Dashboard projects={projects} viewHandler={viewProject} /> :
