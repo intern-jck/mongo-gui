@@ -11,15 +11,6 @@ const Navbar = ({createHandler}) => {
       <button onClick={createHandler}>
         NEW
       </button>
-      {/* Read/Update */}
-      <button>
-        EDIT
-      </button>
-      {/* Delete */}
-      <button>
-        DELETE
-      </button>
-
       <button
         className='dash-show-btn'
         // onClick={toggleProjects}

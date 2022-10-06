@@ -6,11 +6,20 @@ mongoose.connect('mongodb://localhost:27017/projectMaker')
   .then((data) => (console.log('mongo success!')))
   .catch((error) => (console.log(error)));
 
+// Create a document
+// Returns a promise
+// TODO: Implement pagination.
+const createProject = (projectData) => {
+    return Project.create(projectData);
+  };
+
+// Read all documents
+// Make queries promises with exec()
 const getProjects = () => {
-  return Project.find()
-  .exec();
+  return Project.find().exec();
 };
 
+// Update a document
 const updateProject = (projectData) => {
 
   // Format the link to be based on the name.
@@ -32,17 +41,22 @@ const updateProject = (projectData) => {
     photos: projectData.photos,
   };
 
-  const options = { 'upsert': true };
+  const options = { 'upsert': false };
 
   return Project.findOneAndUpdate(filter, update, options).exec();
 }
 
-const createProject = (projectData) => {
-  return Project.create(projectData);
+// Delete a document
+const deleteProject = (id) => {
+  console.log('delete project', id)
+  return Project.deleteOne({_id: id}).exec();
 };
 
+
+
 module.exports = {
+  createProject,
   getProjects,
   updateProject,
-  createProject,
+  deleteProject,
 };

@@ -9,7 +9,7 @@ import PhotoInput from './FormComponents/PhotoInput.jsx';
 import './Form.css';
 import './FormComponents/FormComponents.css';
 
-const Form = ({project, submitHandler}) => {
+const Form = ({project, submitHandler, deleteHandler}) => {
   console.log('FORM GOT:', project.name)
 
   const [formData, setFormData] = useState(project);
@@ -29,6 +29,12 @@ const Form = ({project, submitHandler}) => {
     console.log(formData);
   };
 
+  const deleteForm = (event) => {
+    event.preventDefault();
+    console.log('DELETE:', project._id)
+    deleteHandler(project._id);
+
+  }
   const inputChange = (event) => {
     event.preventDefault();
     const {name, value} = event.target;
@@ -89,14 +95,20 @@ const Form = ({project, submitHandler}) => {
     }));
   };
 
+      {/* Delete */}
   return (
     <div className='Form'>
+      <label id='submit-form-label' htmlFor='submit-form-btn'>
+        SAVE
+      </label>
+      <label id='delete-form-label'>
+        DELETE
+        <button id='delete-form-btn' onClick={deleteForm} />
+      </label>
 
-      <label id="submit-form-label" htmlFor='submit-form'>SAVE</label>
       {/* <h2>LINK: {formData.link}</h2> */}
       <form onSubmit={submitForm}>
-        <input type='submit' id='submit-form' />
-
+        <button type='submit' id='submit-form-btn' />
         {/* Project Info */}
         <div className='form-section'>
           <TextInput
@@ -155,8 +167,6 @@ const Form = ({project, submitHandler}) => {
         </div> */}
 
       </form>
-
-
     </div>
   );
 };

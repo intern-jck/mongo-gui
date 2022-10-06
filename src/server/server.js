@@ -8,8 +8,17 @@ app.use(express.static('public'));
 
 const PORT = 3000;
 
-const {getProjects, updateProject, createProject} = require('./controller/controller.js');
+const {createProject, getProjects, updateProject, deleteProject} = require('./controller/controller.js');
 
+// CREATE
+app.post('/create', (req, res) => {
+  console.log('New Project: ', req.body);
+  createProject(req.body)
+    .then((data) => (res.sendStatus(201)))
+    .catch((error) => (console.log('post error', error)));
+});
+
+// READ
 app.get('/projects', (req, res) => {
   console.log('GETTING PROJECTS');
   getProjects()
@@ -20,18 +29,20 @@ app.get('/projects', (req, res) => {
   .catch((error) => (console.log('get error', error)));
 });
 
-app.post('/project', (req, res) => {
+// UPDATE
+// Should be put?
+app.put('/project', (req, res) => {
   // console.log(req.body);
   updateProject(req.body)
-    .then((data) => (res.sendStatus(201)))
-    .catch((error) => (console.log('post error', error)));
+    .then((data) => (res.sendStatus(202)))
+    .catch((error) => (console.log('put error', error)));
 });
 
-app.post('/create', (req, res) => {
-  console.log('New Project: ', req.body);
-  createProject(req.body)
-    .then((data) => (res.sendStatus(201)))
-    .catch((error) => (console.log('post error', error)));
+app.delete('/project', (req, res) => {
+  console.log(req.query.id)
+  deleteProject(req.query.id)
+    .then((data) => (res.sendStatus(202)))
+    .catch((error) => (console.log('delete error', error)));
 });
 
 app.listen(PORT, () => {

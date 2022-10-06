@@ -15,6 +15,27 @@ const App = () => {
     getProjects();
   }, []);
 
+  // CREATE
+  const createProject = () => {
+    // Create random project name as default
+
+    const letters = 'abcdefghijklmnopqrstuvwxyz';
+    let randomName = '';
+    for (let i = 0; i < 6; i++) {
+      randomName += letters.charAt(Math.floor(Math.random() * letters.length));
+    }
+
+    const data = {'name': `project-${randomName}`};
+
+    axios.post(`${SERVER_URL}/create`, data)
+      .then((response) => {
+        console.log('create project', response.data);
+        getProjects();
+      })
+      .catch((error) => ('Create Error', console.log(error)));
+  };
+
+  // READ
   const getProjects = ()  => {
     axios.get(`${SERVER_URL}/projects`)
       .then((response) => {
@@ -24,17 +45,9 @@ const App = () => {
       .catch((error) => (console.log('getProjects error: ', error)));
   };
 
-  const viewProject = (projId) => {
-    console.log('')
-    console.log('<VIEW>');
-    console.log('VIEW HANDLER: ', projId);
-    projId ?
-      setCurrentProject(projects[projId]) :
-      setCurrentProject({});
-  };
-
+  // UPDATE
   const updateProject = (data) => {
-    axios.post(`${SERVER_URL}/project`, data)
+    axios.put(`${SERVER_URL}/project`, data)
       .then((response) => {
         console.log('update project', response.data)
         getProjects();
@@ -42,20 +55,29 @@ const App = () => {
       .catch((error) => (console.log(error)));
   };
 
-  const createProject = () => {
-    const data = {'name': `project-${projects.length}`};
-    console.log('Creating new project!', data, projects.length, projects);
-    axios.post(`${SERVER_URL}/create`, data)
-      .then((response) => {
-        console.log('create project', response.data);
-        getProjects();
-      })
-      .catch((error) => ('Create Error', console.log(error)));
+  // DELETE
+  const deleteProject = (id) => {
+    console.log('DELETING:', id);
+    axios.delete(`${SERVER_URL}/project?id=${id}`)
+    .then((response) => {
+      console.log('delete project', response.data)
+      getProjects();
+      setCurrentProject();
+    })
+    .catch((error) => (console.log(error)));
+  };
+
+  // Render the selected project data
+  const viewProject = (projId) => {
+    console.log('VIEW HANDLER: ', projId);
+    projId ?
+      setCurrentProject(projects[projId]) :
+      setCurrentProject({});
   };
 
   return (
     <>
-      <Navbar createHandler={createProject} />
+      <Navbar createHandler={createProject} deleteHandler={deleteProject}/>
       {
         projects ?
         <Dashboard projects={projects} viewHandler={viewProject} /> :
@@ -63,7 +85,11 @@ const App = () => {
       }
       {
         currentProject ?
-        <Form project={currentProject} submitHandler={updateProject} /> :
+        <Form
+          project={currentProject}
+          submitHandler={updateProject}
+          deleteHandler={deleteProject}
+        /> :
         null
       }
     </>
