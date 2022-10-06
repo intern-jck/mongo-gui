@@ -3,21 +3,25 @@ const {Schema} = mongoose;
 
 const ProjectSchema = new Schema({
   project_id: Number,
-  name: String,
-  link: String,
-  client: String,
-  client_url: String,
+  name: {type: String, default: ''},
+  link: {type: String, default: ''},
+  client: {type: String, default: ''},
+  client_url: {type: String, default: ''},
   date: {
-    start_month: String,
-    start_year: String,
-    end_month: String,
-    end_year: String,
+    start_month: {type: String, default: ''},
+    start_year: {type: String, default: ''},
+    end_month: {type: String, default: ''},
+    end_year: {type: String, default: ''},
   },
-  short: String,
-  info: String,
+  short: {type: String, default: ''},
+  info: {type: String, default: ''},
   tech: [],
   photos: [],
 });
 
+// We can use this schema to create
+// a Project document for the Projects collection.
+// The collection name will be lowercase when looking in
+// mongosh.
 const Project = mongoose.model('Projects', ProjectSchema);
 module.exports = Project;

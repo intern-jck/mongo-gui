@@ -6,7 +6,6 @@ const Navbar = ({createHandler}) => {
 
   return (
     <nav className='Navbar'>
-      {/* PROJECT MAKER */}
 
       {/* Create */}
       <button onClick={createHandler}>

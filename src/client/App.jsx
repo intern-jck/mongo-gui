@@ -12,17 +12,7 @@ const App = () => {
   const [currentProject, setCurrentProject] = useState();
 
   useEffect(() => {
-    // uncomment for testing
-    // axios.get(`data/json/projectList.json`)
-    // axios.get(`${SERVER_URL}/projects`)
-    //   .then((response) => {
-    //     console.log('CLIENT GOT: ', response.data)
-    //     setProjects(response.data);
-    //     // setCurrentProject(response.data[0]);
-    //   })
-    //   .catch((error) => (console.log('getProjects error: ', error)));
     getProjects();
-
   }, []);
 
   const getProjects = ()  => {
@@ -30,13 +20,14 @@ const App = () => {
       .then((response) => {
         console.log('CLIENT GOT: ', response.data)
         setProjects(response.data);
-        // setCurrentProject(response.data[0]);
       })
       .catch((error) => (console.log('getProjects error: ', error)));
-
   };
 
   const viewProject = (projId) => {
+    console.log('')
+    console.log('<VIEW>');
+    console.log('VIEW HANDLER: ', projId);
     projId ?
       setCurrentProject(projects[projId]) :
       setCurrentProject({});
@@ -44,7 +35,10 @@ const App = () => {
 
   const updateProject = (data) => {
     axios.post(`${SERVER_URL}/project`, data)
-      .then((response) => (console.log('update project', response.data)))
+      .then((response) => {
+        console.log('update project', response.data)
+        getProjects();
+      })
       .catch((error) => (console.log(error)));
   };
 
@@ -72,8 +66,6 @@ const App = () => {
         <Form project={currentProject} submitHandler={updateProject} /> :
         null
       }
-      {/* <div className='App'>
-      </div> */}
     </>
   );
 };

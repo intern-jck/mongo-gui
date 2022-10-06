@@ -10,41 +10,23 @@ import './Form.css';
 import './FormComponents/FormComponents.css';
 
 const Form = ({project, submitHandler}) => {
-  const [formData, setFormData] = useState({
-    _id: '',
-    name: '',
-    link: '',
-    client: '',
-    client_url: '',
-    date: {
-      start_month: '',
-      start_year: '',
-      end_month: '',
-      end_year: '',
-    },
-    short: '',
-    info: '',
-    tech: [],
-    photos: [],
-  });
+  console.log('FORM GOT:', project.name)
+
+  const [formData, setFormData] = useState(project);
   const [newDate, setNewDate] = useState({});
   const [newTech, setNewTech] = useState('');
   const [newPhoto, setNewPhoto] = useState('');
+  // console.log(formData)
 
   useEffect(() => {
-    console.log(project)
-    // for() {
-
-    // }
-    setFormData((formData) => ({
-      ...formData,
-      ...project,
-    }));
+    console.log('SETTING PROJECT')
+    setFormData(project);
   }, [project]);
 
   const submitForm = (event) => {
     event.preventDefault();
     submitHandler(formData);
+    console.log(formData);
   };
 
   const inputChange = (event) => {
@@ -111,8 +93,10 @@ const Form = ({project, submitHandler}) => {
     <div className='Form'>
 
       <label id="submit-form-label" htmlFor='submit-form'>SAVE</label>
+      {/* <h2>LINK: {formData.link}</h2> */}
       <form onSubmit={submitForm}>
         <input type='submit' id='submit-form' />
+
         {/* Project Info */}
         <div className='form-section'>
           <TextInput
@@ -148,8 +132,9 @@ const Form = ({project, submitHandler}) => {
             changeHandler={inputChange}
           />
         </div>
+
         {/* Project Data */}
-        <div className='form-section'>
+        {/* <div className='form-section'>
           <DateInput date={formData.date} dateHandler={getDate} />
           <TagInput
             id={'form-tech'}
@@ -167,8 +152,11 @@ const Form = ({project, submitHandler}) => {
             changeHandler={updatePhoto}
             photoHandler={addPhoto}
           />
-        </div>
+        </div> */}
+
       </form>
+
+
     </div>
   );
 };

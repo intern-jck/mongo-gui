@@ -1,24 +1,28 @@
 const mongoose = require('mongoose');
 const Project = require('../model/model.js');
 
+// URL Format:  mongodb://[IP_FOR_DB]:[PORT_FOR_DB]/[DB_NAME]
 mongoose.connect('mongodb://localhost:27017/projectMaker')
   .then((data) => (console.log('mongo success!')))
   .catch((error) => (console.log(error)));
 
 const getProjects = () => {
-  console.log('getting data')
   return Project.find()
   .exec();
 };
 
 const updateProject = (projectData) => {
-  console.log('adding project', projectData);
 
-  const filter = { 'project_id': projectData.project_id };
+  // Format the link to be based on the name.
+  // EX:  name: 'Project Name', link: 'project-name'
+  const linkLowerCase = projectData.name.toLowerCase().split(' ').join('-');
+  console.log('Link', linkLowerCase)
+
+  const filter = { '_id': projectData._id };
 
   const update = {
     name: projectData.name,
-    link: projectData.link,
+    link: `${linkLowerCase}`,
     client: projectData.client,
     client_url: projectData.client_url,
     date: projectData.date,

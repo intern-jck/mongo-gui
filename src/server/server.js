@@ -11,20 +11,17 @@ const PORT = 3000;
 const {getProjects, updateProject, createProject} = require('./controller/controller.js');
 
 app.get('/projects', (req, res) => {
-  console.log('GET');
+  console.log('GETTING PROJECTS');
   getProjects()
-  // uncomment for testing
-  // .then((data) => (res.sendStatus(200)))
   .then((data) => {
-    console.log('SERVER GOT: ', data)
+    // console.log('SERVER GOT: ', data)
     res.send(data)
   })
   .catch((error) => (console.log('get error', error)));
 });
 
 app.post('/project', (req, res) => {
-  console.log(req.body);
-  // res.sendStatus(201)
+  // console.log(req.body);
   updateProject(req.body)
     .then((data) => (res.sendStatus(201)))
     .catch((error) => (console.log('post error', error)));
