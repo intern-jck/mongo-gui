@@ -1,7 +1,7 @@
 {
-  "name": "react-template-npm",
+  "name": "mongo-gui",
   "version": "1.0.0",
-  "description": "## Recipe",
+  "description": "mongodb gui",
   "main": "index.js",
   "scripts": {
     "start": "webpack --mode=development",
