@@ -41,6 +41,7 @@ const updateProject = (projectData) => {
     photos: projectData.photos,
   };
 
+
   const options = { 'upsert': false };
 
   return Project.findOneAndUpdate(filter, update, options).exec();
