@@ -23,3 +23,14 @@ Start server, then client
 npm run server-dev
 npm run client-dev
 ```
+
+Enjoy!
+
+### TODO:
+
+Implement the following:
+* Dynamic form field generator
+* Create new collection
+* Export collection data
+* Import data
+* Indexing options for form fields
