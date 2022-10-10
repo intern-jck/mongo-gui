@@ -8,43 +8,38 @@ app.use(express.static('public'));
 
 const PORT = 3000;
 
-const {createProject, getProjects, updateProject, deleteProject} = require('./controller/controller.js');
+const {createDocument, getDocuments, updateDocument, deleteDocument} = require('./controller/controller.js');
 
 // CREATE
-app.post('/create', (req, res) => {
-  console.log('New Project: ', req.body);
-  createProject(req.body)
+app.post('/document', (req, res) => {
+  createDocument(req.body)
     .then((data) => (res.sendStatus(201)))
     .catch((error) => (console.log('post error', error)));
 });
 
 // READ
-app.get('/projects', (req, res) => {
-  console.log('GETTING PROJECTS');
-  getProjects()
-  .then((data) => {
-    // console.log('SERVER GOT: ', data)
-    res.send(data)
-  })
-  .catch((error) => (console.log('get error', error)));
+app.get('/documents', (req, res) => {
+  console.log('GETTING DocumentS');
+  getDocuments()
+    .then((data) => (res.send(data)))
+    .catch((error) => (console.log('get error', error)));
 });
 
 // UPDATE
-// Should be put?
-app.put('/project', (req, res) => {
-  // console.log(req.body);
-  updateProject(req.body)
+app.put('/document', (req, res) => {
+  updateDocument(req.body)
     .then((data) => (res.sendStatus(202)))
     .catch((error) => (console.log('put error', error)));
 });
 
-app.delete('/project', (req, res) => {
+// DELETE
+app.delete('/document', (req, res) => {
   console.log(req.query.id)
-  deleteProject(req.query.id)
+  deleteDocument(req.query.id)
     .then((data) => (res.sendStatus(202)))
     .catch((error) => (console.log('delete error', error)));
 });
 
 app.listen(PORT, () => {
-  console.log(`Project Maker @ http://127.0.0.1:${PORT}`);
+  console.log(`MongoDB GUI Server @ http://127.0.0.1:${PORT}`);
 });

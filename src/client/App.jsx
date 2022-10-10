@@ -8,90 +8,80 @@ import Form from './components/Form/Form.jsx';
 const SERVER_URL = 'http://127.0.0.1:3000';
 
 const App = () => {
-  const [projects, setProjects] = useState();
-  const [currentProject, setCurrentProject] = useState();
+  const [documents, setDocuments] = useState();
+  const [currentDocument, setCurrentDocument] = useState();
 
   useEffect(() => {
-    getProjects();
+    getDocuments();
   }, []);
 
   // CREATE
-  const createProject = () => {
-    // Create random project name as default
-
-    const letters = 'abcdefghijklmnopqrstuvwxyz';
-    let randomName = '';
-    for (let i = 0; i < 6; i++) {
-      randomName += letters.charAt(Math.floor(Math.random() * letters.length));
-    }
-
-    const data = {'name': `project-${randomName}`};
-
-    axios.post(`${SERVER_URL}/create`, data)
+  const createDocument = () => {
+    axios.post(`${SERVER_URL}/document`, {})
       .then((response) => {
-        console.log('create project', response.data);
-        getProjects();
+        console.log('created doc: ', response.data);
+        getDocuments();
       })
-      .catch((error) => ('Create Error', console.log(error)));
+      .catch((error) => (console.log('createDocument Error:', error)));
   };
 
   // READ
-  const getProjects = ()  => {
-    axios.get(`${SERVER_URL}/projects`)
+  const getDocuments = ()  => {
+    axios.get(`${SERVER_URL}/documents`)
       .then((response) => {
-        console.log('CLIENT GOT: ', response.data)
-        setProjects(response.data);
+        console.log('all docs: ', response.data)
+        if (response.data.length > 0) {
+          setDocuments(response.data);
+        }
       })
-      .catch((error) => (console.log('getProjects error: ', error)));
+      .catch((error) => (console.log('getDocuments error: ', error)));
   };
 
   // UPDATE
-  const updateProject = (data) => {
-    axios.put(`${SERVER_URL}/project`, data)
+  const updateDocument = (data) => {
+    axios.put(`${SERVER_URL}/document`, data)
       .then((response) => {
-        console.log('update project', response.data)
-        getProjects();
+        console.log('updated doc', response.data)
+        getDocuments();
       })
-      .catch((error) => (console.log(error)));
+      .catch((error) => (console.log('updateDocument Error:', error)));
   };
 
   // DELETE
-  const deleteProject = (id) => {
-    console.log('DELETING:', id);
-    axios.delete(`${SERVER_URL}/project?id=${id}`)
+  const deleteDocument = (id) => {
+    axios.delete(`${SERVER_URL}/document?id=${id}`)
     .then((response) => {
-      console.log('delete project', response.data)
-      getProjects();
-      setCurrentProject();
+      console.log('deleted doc', response.data)
+      getDocuments();
+      setCurrentDocument();
     })
-    .catch((error) => (console.log(error)));
+    .catch((error) => (console.log('deleteDocument Error:', error)));
   };
 
-  // Render the selected project data
-  const viewProject = (projId) => {
-    console.log('VIEW HANDLER: ', projId);
-    projId ?
-      setCurrentProject(projects[projId]) :
-      setCurrentProject({});
+  // Render the selected document data
+  const viewDocument = (id) => {
+    id ?
+      setCurrentDocument(documents[id]) :
+      setCurrentDocument({});
   };
 
   return (
     <>
-      <Navbar createHandler={createProject} deleteHandler={deleteProject}/>
+      <Navbar createHandler={createDocument} deleteHandler={deleteDocument}/>
       {
-        projects ?
-        <Dashboard projects={projects} viewHandler={viewProject} /> :
+        documents ?
+        <Dashboard documents={documents} viewHandler={viewDocument} /> :
         null
       }
-      {
-        currentProject ?
+      {/* {
+        currentDocument ?
         <Form
-          project={currentProject}
-          submitHandler={updateProject}
-          deleteHandler={deleteProject}
+          document={currentDocument}
+          submitHandler={updateDocument}
+          deleteHandler={deleteDocument}
         /> :
         null
-      }
+      } */}
     </>
   );
 };

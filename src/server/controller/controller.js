@@ -1,63 +1,57 @@
 const mongoose = require('mongoose');
-const Project = require('../model/model.js');
+const Document = require('../model/model.js');
 
-// URL Format:  mongodb://[IP_FOR_DB]:[PORT_FOR_DB]/[DB_NAME]
-mongoose.connect('mongodb://localhost:27017/projectMaker')
-  .then((data) => (console.log('mongo success!')))
+mongoose.connect('mongodb://localhost:27017/mongogui')
+  .then((data) => (console.log('mongodb success!')))
   .catch((error) => (console.log(error)));
 
 // Create a document
-// Returns a promise
-// TODO: Implement pagination.
-const createProject = (projectData) => {
-    return Project.create(projectData);
-  };
-
-// Read all documents
-// Make queries promises with exec()
-const getProjects = () => {
-  return Project.find().exec();
+const createDocument = (projectData) => {
+  console.log('creating document');
+  return Document.create(projectData);
 };
 
-// Update a document
-const updateProject = (projectData) => {
+// Read all documents
+const getDocuments = () => {
+  console.log('getting documents');
+  return Document.find().exec();
+};
 
-  // Format the link to be based on the name.
-  // EX:  name: 'Project Name', link: 'project-name'
-  const linkLowerCase = projectData.name.toLowerCase().split(' ').join('-');
-  console.log('Link', linkLowerCase)
+// Read a document
+const getDocument = (id) => {
+  console.log('getting document', id);
+  return Document.find({_id: id}).exec();
+}
+
+// Update a document
+const updateDocument = (projectData) => {
 
   const filter = { '_id': projectData._id };
 
   const update = {
-    name: projectData.name,
-    link: `${linkLowerCase}`,
-    client: projectData.client,
-    client_url: projectData.client_url,
-    date: projectData.date,
-    short: projectData.short,
-    info: projectData.info,
-    tech: projectData.tech,
+    text_0: projectData.text_0,
+    text_1: projectData.text_1,
+    text_3: projectData.text_3,
+    docDate: projectData.docDate,
+    tags: projectData.tags,
     photos: projectData.photos,
   };
 
-
   const options = { 'upsert': false };
 
-  return Project.findOneAndUpdate(filter, update, options).exec();
+  console.log('updating document', id)
+  return Document.findOneAndUpdate(filter, update, options).exec();
 }
 
 // Delete a document
-const deleteProject = (id) => {
-  console.log('delete project', id)
-  return Project.deleteOne({_id: id}).exec();
+const deleteDocument = (id) => {
+  console.log('deleting document', id)
+  return Document.deleteOne({_id: id}).exec();
 };
 
-
-
 module.exports = {
-  createProject,
-  getProjects,
-  updateProject,
-  deleteProject,
+  createDocument,
+  getDocuments,
+  updateDocument,
+  deleteDocument,
 };
